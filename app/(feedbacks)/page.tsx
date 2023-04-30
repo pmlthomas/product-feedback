@@ -1,15 +1,14 @@
 "use client";
-
+import { signOut, useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import React from "react";
-import { useSession, signOut } from "next-auth/react";
 
-export default async function FeedbacksPage() {
-    const { data: session } = useSession();
-
-    if (session) {
-        return <div onClick={() => signOut()}>FeedbacksPage</div>;
-    } else {
-        redirect("/login");
-    }
+export default function FeedbacksPage() {
+    // const { status } = useSession();
+    // if (status === "unauthenticated") {
+    //     console.log("redirect");
+    //     redirect("/login");
+    // }
+    // if (status === "loading") return <p>Loading...</p>;
+    return <div onClick={() => signOut()}>FeedbacksPage</div>;
 }

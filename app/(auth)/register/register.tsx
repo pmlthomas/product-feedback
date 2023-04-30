@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Register() {
     const initialData = {
@@ -15,6 +16,7 @@ export default function Register() {
 
     const [data, setData] = useState(initialData);
     const [isTermsChecked, setIsTermsChecked] = useState<boolean>(false);
+    const { push } = useRouter();
 
     useEffect(() => {
         setData({ ...data, terms: isTermsChecked });
@@ -22,13 +24,13 @@ export default function Register() {
 
     const handleSubmit = async (e: React.FormEvent): Promise<void> => {
         e.preventDefault();
-        await fetch("http://localhost:3000/api/auth/register", {
+        fetch("http://localhost:3000/api/auth/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(data),
-        });
+        }).then(() => push("/"));
     };
 
     const handleInputChange = (

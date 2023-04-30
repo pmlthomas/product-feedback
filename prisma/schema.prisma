@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Account {
-  id                 String  @id @default(cuid())
+  id                 String  @id @default(uuid())
   userId             String
   type               String
   provider           String
@@ -28,7 +28,7 @@ model Account {
 }
 
 model Session {
-  id           String   @id @default(cuid())
+  id           String   @id @default(uuid())
   sessionToken String   @unique
   userId       String
   expires      DateTime
@@ -43,7 +43,7 @@ model VerificationToken {
 }
 
 model User {
-  id            String @id @default(cuid())
+  id            String @id @default(uuid())
   email         String? @unique
   name      String
   username      String
@@ -57,13 +57,13 @@ model User {
 }
 
 model Category {
-  id String @id @default(cuid())
+  id String @id @default(uuid())
   name String
   feedbacks Feedback[]
 }
 
 model Feedback {
-  id          String @id @default(cuid())
+  id          String @id @default(uuid())
   category    Category @relation(fields: [categoryId], references: [id])
   author      User @relation(fields: [authorId], references: [id])
   authorId    String
@@ -76,7 +76,7 @@ model Feedback {
 }
 
 model Comment {
-  id String @id @default(cuid())
+  id String @id @default(uuid())
   feedback Feedback @relation(fields: [feedbackId], references: [id])
   feedbackId String
   author User @relation(fields: [authorId], references: [id])
@@ -86,7 +86,7 @@ model Comment {
 }
 
 model Reply {
-    id String @id @default(cuid())
+    id String @id @default(uuid())
     comment Comment @relation(fields: [commentId], references: [id])
     commentId String
     replyText String @db.Text
