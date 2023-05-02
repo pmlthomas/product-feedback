@@ -1,4 +1,4 @@
-import "../globals.css";
+import "./../globals.css";
 import Providers from "../providers";
 
 export default function AuthLayout({
@@ -8,7 +8,7 @@ export default function AuthLayout({
 }) {
     return (
         <html className="h-screen w-screen bg-gray-100 font-poppins">
-            <body className="h-screen w-screen">
+            <body className="h-screen w-screen flex justify-center items-center">
                 <Providers>{children}</Providers>
             </body>
         </html>
