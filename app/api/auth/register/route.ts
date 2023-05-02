@@ -17,12 +17,14 @@ export async function POST(req: Request) {
     if (terms) {
         if (password === confirm_password) {
             if (!existingUser) {
+                const bcrypt = require("bcrypt");
+                const hashedPassword = await bcrypt.hash(password, 10);
                 await prisma.user.create({
                     data: {
                         name,
                         username,
                         email,
-                        password,
+                        password: hashedPassword,
                     },
                 });
                 return NextResponse.json({

@@ -1,19 +1,18 @@
+"use client";
 import "../globals.css";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/app/Navbar/Navbar";
 import React, { ReactNode } from "react";
 import Providers from "../providers";
-import ProtectedRoute from "./protectedRoute";
 
 export default function MainLayout({ children }: { children: ReactNode }) {
     return (
-        <html>
-            <body>
-                <nav>
-                    <Navbar />
-                </nav>
-
+        <html className="h-screen w-screen bg-gray-100 font-poppins">
+            <body className="h-screen w-screen">
                 <Providers>
-                    <ProtectedRoute>{children}</ProtectedRoute>
+                    <nav>
+                        <Navbar />
+                    </nav>
+                    {children}
                 </Providers>
             </body>
         </html>

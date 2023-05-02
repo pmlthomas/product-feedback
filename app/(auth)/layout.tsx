@@ -7,8 +7,8 @@ export default function AuthLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html>
-            <body>
+        <html className="h-screen w-screen bg-gray-100">
+            <body className="h-screen w-screen">
                 <Providers>{children}</Providers>
             </body>
         </html>
