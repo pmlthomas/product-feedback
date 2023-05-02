@@ -5,7 +5,7 @@ import FeedbackCard from "./components/feedbackCard";
 
 export default function Homepage() {
     return (
-        <div>
+        <div className="flex flex-col items-center">
             <FilterBar />
             <FeedbackCard />
             <FeedbackCard />

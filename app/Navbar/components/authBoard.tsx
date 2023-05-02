@@ -15,8 +15,11 @@ export default function AuthBoard({
     const { data: session } = useSession();
     const router = useRouter();
     return (
-        <div className="flex items-center bg-gradient-to-r from-darkBlue to-purple w-screen h-20">
-            <div className="w-screen flex justify-between">
+        <div
+            className="flex items-center bg-gradient-to-r from-darkBlue to-purple w-screen h-20 
+            md:w-64 md:h-[140px] md:rounded-xl md:items-end"
+        >
+            <div className="w-screen flex justify-between md:mb-7 md:ml-2">
                 <div className="pl-6 -mt-1">
                     {session?.user ? (
                         <>
@@ -51,7 +54,7 @@ export default function AuthBoard({
                     onClick={() => setIsPhoneNavOpen(!isPhoneNavOpen)}
                     size={50}
                     color="white"
-                    className="pr-6 cursor-pointer"
+                    className="pr-6 cursor-pointer md:hidden"
                 />
             </div>
         </div>

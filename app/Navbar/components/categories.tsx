@@ -35,8 +35,8 @@ export default function Categories() {
     }, [currentClickedCategory]);
 
     return (
-        <div className="h-14 min-h-[50px] w-screen bg-white flex">
-            <div className="w-screen flex justify-between items-center px-6 text-sm font-semibold">
+        <div className="h-14 min-h-[50px] w-screen bg-white flex md:w-64 md:h-[140px] md:rounded-xl">
+            <div className="w-screen flex justify-between items-center px-6 text-sm font-semibold md:h-fit md:gap-5 md:flex-wrap md:mt-6">
                 {categoriesButtons}
             </div>
         </div>

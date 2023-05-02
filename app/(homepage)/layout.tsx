@@ -9,7 +9,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
         <html className="h-screen w-screen bg-gray-100 font-poppins">
             <body className="h-screen w-screen">
                 <Providers>
-                    <nav>
+                    <nav className="md:flex md:justify-center">
                         <Navbar />
                     </nav>
                     {children}

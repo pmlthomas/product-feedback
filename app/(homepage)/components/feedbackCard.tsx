@@ -4,7 +4,7 @@ import { IoIosArrowUp } from "react-icons/io";
 
 export default function FeedbackCard() {
     return (
-        <div className="mx-6 p-4 shadow-md rounded-xl h-[175px] bg-white mb-4">
+        <div className="p-4 shadow-md rounded-xl h-[175px] w-[95vw] max-w-[800px] bg-white mb-4">
             <h1 className="text-lightDark font-semibold text-sm mb-3">
                 Add tags for solution
             </h1>
