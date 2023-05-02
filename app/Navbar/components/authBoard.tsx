@@ -15,12 +15,12 @@ export default function AuthBoard({
     const { data: session } = useSession();
     const router = useRouter();
     return (
-        <div className="flex items-center bg-gradient-to-r from-blue via-purple via-80% to-orange w-screen h-20">
+        <div className="flex items-center bg-gradient-to-r from-darkBlue to-purple w-screen h-20">
             <div className="w-screen flex justify-between">
                 <div className="pl-6 -mt-1">
                     {session?.user ? (
                         <>
-                            <h1 className="text-lg text-white select-none">
+                            <h1 className="text-[1.15em] text-white select-none">
                                 {session?.user?.name}
                             </h1>
                             <h2

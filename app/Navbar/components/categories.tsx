@@ -14,8 +14,8 @@ export default function Categories() {
                         onClick={() => setCurrentClickedCategory(el)}
                         className={`p-1 px-4 rounded-xl cursor-pointer select-none ${
                             currentClickedCategory === el
-                                ? "bg-darkBlue text-white h-fit pb-2"
-                                : "bg-gray-100 text-darkBlue h-fit pb-2"
+                                ? "bg-darkBlue text-white h-fit pb-2 pt-1.5"
+                                : "bg-gray-100 text-darkBlue h-fit pb-2 pt-1.5"
                         }`}
                         key={i}
                     >
@@ -28,7 +28,7 @@ export default function Categories() {
 
     return (
         <div className="h-14 min-h-[50px] w-screen bg-white flex">
-            <div className="w-screen flex justify-between items-center px-6">
+            <div className="w-screen flex justify-between items-center px-6 text-sm font-semibold">
                 {categoriesButtons}
             </div>
         </div>

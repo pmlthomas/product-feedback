@@ -12,7 +12,7 @@ export default function ChangementsNav() {
             </div>
             <div className="flex justify-between text-[0.9em]">
                 <div className="flex">
-                    <div className="rounded-full w-2 h-2 bg-blue mt-[7px] mr-6"></div>
+                    <div className="rounded-full w-2 h-2 bg-darkBlue mt-[7px] mr-6"></div>
                     <div>Prévu</div>
                 </div>
                 <p className="font-bold">2</p>

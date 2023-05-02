@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import AuthBoard from "./authBoard";
-import Categories from "./categories";
-import Roadmap from "./roadmap";
+import AuthBoard from "./components/authBoard";
+import Categories from "./components/categories";
+import Roadmap from "./components/roadmap";
 
 export default function Navbar() {
     const [isPhoneNavOpen, setIsPhoneNavOpen] = useState<boolean>(false);
