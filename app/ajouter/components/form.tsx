@@ -105,12 +105,16 @@ export default function AddFeedbackForm({
                 )}
                 <div className="flex justify-end mt-5">
                     <button
+                        type="button"
                         onClick={() => router.push("/")}
                         className="bg-lightDark hover:bg-slate-700 p-2 rounded-lg text-white"
                     >
                         Annuler
                     </button>
-                    <button className="bg-purple p-2 rounded-lg text-white hover:bg-[#a6128e] ml-2">
+                    <button
+                        type="submit"
+                        className="bg-purple p-2 rounded-lg text-white hover:bg-[#a6128e] ml-2"
+                    >
                         Ajouter la suggestion
                     </button>
                 </div>
