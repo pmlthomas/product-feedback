@@ -6,16 +6,24 @@ export default function Categories() {
         useState<string>("");
     const [categoriesButtons, setCategoriesButtons] = useState<any>(null);
 
+    function handleCategoryClick(el: string) {
+        if (currentClickedCategory === el) {
+            setCurrentClickedCategory("");
+        } else {
+            setCurrentClickedCategory(el);
+        }
+    }
+
     useEffect(() => {
         setCategoriesButtons(
             categories.map((el, i) => {
                 return (
                     <p
-                        onClick={() => setCurrentClickedCategory(el)}
+                        onClick={() => handleCategoryClick(el)}
                         className={`p-1 px-4 rounded-xl cursor-pointer select-none ${
                             currentClickedCategory === el
                                 ? "bg-darkBlue text-white h-fit pb-2 pt-1.5"
-                                : "bg-gray-100 text-darkBlue h-fit pb-2 pt-1.5"
+                                : "bg-lightGray text-darkBlue h-fit pb-2 pt-1.5"
                         }`}
                         key={i}
                     >

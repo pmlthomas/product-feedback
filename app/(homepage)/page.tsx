@@ -10,6 +10,7 @@ export default function Homepage() {
             <FeedbackCard />
             <FeedbackCard />
             <FeedbackCard />
+            <FeedbackCard />
         </div>
     );
 }
