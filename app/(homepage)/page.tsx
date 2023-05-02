@@ -5,7 +5,7 @@ import FeedbackCard from "./components/feedbackCard";
 
 export default function Homepage() {
     return (
-        <div className="flex flex-col items-center mt-4">
+        <div className="flex flex-col items-center lg:mt-4">
             <FilterBar />
             <FeedbackCard />
             <FeedbackCard />

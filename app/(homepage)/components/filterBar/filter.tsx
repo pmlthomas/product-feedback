@@ -32,7 +32,7 @@ export default function Filter() {
     });
 
     return (
-        <div className="flex flex-col text-white">
+        <div className="flex flex-col text-white ml-3 md:m-0">
             <div className="flex">
                 <p
                     onClick={() => setIsFilterOpen(!isFilterOpen)}

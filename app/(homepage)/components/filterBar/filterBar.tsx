@@ -15,7 +15,7 @@ export default function FilterBar() {
                 <p className="ml-4 mr-12 hidden lg:block text-lg text-white font-semibold">
                     6 Suggestions
                 </p>
-                <p className="text-white mr-[7px] hidden md:block mt-0.5">
+                <p className="text-white mr-[7px] hidden md:block mt-0.5 md:ml-3 lg:ml-0">
                     Filtrer par :
                 </p>
                 <div className="mt-0.5">
