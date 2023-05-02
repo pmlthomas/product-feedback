@@ -25,7 +25,7 @@ export default function Navbar() {
                 isPhoneNavOpen={isPhoneNavOpen}
                 setIsPhoneNavOpen={setIsPhoneNavOpen}
             />
-            {screenWidth > 804 ? (
+            {screenWidth > 813 ? (
                 <>
                     <Categories />
                     <Roadmap />
