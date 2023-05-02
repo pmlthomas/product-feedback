@@ -42,7 +42,7 @@ export const authOptions: NextAuthOptions = {
                 );
                 if (!isPasswordValid) return null;
 
-                return user.email;
+                return user;
             },
         }),
     ],

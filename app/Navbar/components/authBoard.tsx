@@ -14,6 +14,7 @@ export default function AuthBoard({
 }: authBoard) {
     const { data: session } = useSession();
     const router = useRouter();
+
     return (
         <div
             className="flex items-center bg-gradient-to-r from-darkBlue to-purple w-screen h-20 
