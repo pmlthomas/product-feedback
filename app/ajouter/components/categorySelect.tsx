@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 interface categorySelect {
@@ -14,7 +13,7 @@ export default function CategorySelect({
     isFilterOpen,
     setIsFilterOpen,
 }: categorySelect) {
-    const categories = ["Tout", "UI", "Bug", "Amélioration"];
+    const categories = ["UI", "Bug", "Amélioration"];
 
     const categoriesMapping = categories.map((el, i) => {
         if (currentCategory !== el) {

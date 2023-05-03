@@ -45,7 +45,7 @@ model VerificationToken {
 model User {
   id            String @id @default(uuid())
   email         String? @unique
-  name      String
+  name          String
   username      String
   password      String
   feedbacks     Feedback[]
@@ -64,15 +64,15 @@ model Category {
 
 model Feedback {
   id          String @id @default(uuid())
-  category    Category @relation(fields: [categoryId], references: [id])
-  author      User @relation(fields: [authorId], references: [id])
-  authorId    String
-  categoryId  String
   title       String
   description String
-  rating      String
+  rating      String?
   comments    Comment[]
   createdAt   DateTime @default(now())
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  String
+  author      User @relation(fields: [authorId], references: [id])
+  authorId    String
 }
 
 model Comment {

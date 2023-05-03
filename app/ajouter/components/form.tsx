@@ -21,7 +21,7 @@ export default function AddFeedbackForm({
         description: "",
     };
     const router = useRouter();
-    const [currentCategory, setCurrentCategory] = useState<string>("Tout");
+    const [currentCategory, setCurrentCategory] = useState<string>("");
     const [formData, setFormData] = useState(initialFormData as formData);
     const [error, setError] = useState<string>("");
     const [descriptionLength, setDescriptionLength] = useState<number>(0);
@@ -47,10 +47,16 @@ export default function AddFeedbackForm({
     function handleSubmit(e: any) {
         e.preventDefault();
         if (descriptionLength <= 500) {
-            if (formData.title === "" || formData.description === "")
-                return setError(
-                    "Il faut obligatoirement un titre et une description"
-                );
+            if (
+                formData.title === "" ||
+                formData.description === "" ||
+                formData.category === ""
+            )
+                return setError("Tous les champs doivent être remplis");
+            fetch("http://localhost:3000/api/addFeedback", {
+                method: "POST",
+                body: JSON.stringify(formData),
+            });
         }
     }
 
