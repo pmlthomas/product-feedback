@@ -3,7 +3,9 @@ import FilterBar from "./components/filterBar/filterBar";
 import FeedbackCard from "./components/feedbackCard";
 
 async function getFeedbacks() {
-    const req = await fetch("http://localhost:3000/api/feedback");
+    const req = await fetch("http://localhost:3000/api/feedback", {
+        cache: "no-cache",
+    });
     const res = await req.json();
     return res.feedbacks;
 }
@@ -11,6 +13,7 @@ async function getFeedbacks() {
 export default async function Homepage() {
     const feedbacks = await getFeedbacks();
     const feedbacksMapping = feedbacks.map((el: any, i: number) => {
+        el.category = el.category.name;
         return (
             <div key={i}>
                 <FeedbackCard data={el} />

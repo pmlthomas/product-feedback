@@ -10,7 +10,15 @@ interface formData {
 
 // Get All Feedbacks
 export async function GET() {
-    const feedbacks = await prisma.feedback.findMany();
+    const feedbacks = await prisma.feedback.findMany({
+        include: {
+            category: {
+                select: {
+                    name: true,
+                },
+            },
+        },
+    });
     return NextResponse.json({ feedbacks: feedbacks });
 }
 
