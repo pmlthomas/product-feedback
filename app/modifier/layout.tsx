@@ -1,0 +1,16 @@
+import "./../globals.css";
+import Providers from "../providers";
+
+export default function AuthLayout({
+    children,
+}: {
+    children: React.ReactNode;
+}) {
+    return (
+        <html className="h-screen w-screen bg-gray-100 font-poppins">
+            <body className="h-screen w-screen flex justify-center items-center">
+                <Providers>{children}</Providers>
+            </body>
+        </html>
+    );
+}
