@@ -43,7 +43,7 @@ model VerificationToken {
 }
 
 model User {
-  id            String @id @default(uuid())
+  id            String  @id @default(uuid())
   email         String? @unique
   name          String
   username      String
@@ -57,7 +57,7 @@ model User {
 }
 
 model Category {
-  id String @id @default(uuid())
+  id   String  @id @default(uuid())
   name String
   feedbacks Feedback[]
 }
@@ -76,18 +76,18 @@ model Feedback {
 }
 
 model Comment {
-  id String @id @default(uuid())
-  feedback Feedback @relation(fields: [feedbackId], references: [id])
-  feedbackId String
-  author User @relation(fields: [authorId], references: [id])
-  authorId String
-  replies Reply[]
+  id          String  @id @default(uuid())
+  feedback    Feedback @relation(fields: [feedbackId], references: [id])
+  feedbackId  String
+  author      User @relation(fields: [authorId], references: [id])
+  authorId    String
+  replies     Reply[]
   commentText String @db.Text
 }
 
 model Reply {
-    id String @id @default(uuid())
-    comment Comment @relation(fields: [commentId], references: [id])
+    id        String  @id @default(uuid())
+    comment   Comment @relation(fields: [commentId], references: [id])
     commentId String
     replyText String @db.Text
 }

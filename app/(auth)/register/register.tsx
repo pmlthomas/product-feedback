@@ -30,7 +30,7 @@ export default function Register() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(data),
-        }).then(() => push("/"));
+        }).then(() => push("/login"));
     };
 
     const handleInputChange = (

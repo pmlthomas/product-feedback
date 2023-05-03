@@ -27,6 +27,7 @@ export async function POST(req: Request) {
                         password: hashedPassword,
                     },
                 });
+                prisma.$disconnect;
                 return NextResponse.json({
                     status: 201,
                     message: "Compte créé avec succès!",
