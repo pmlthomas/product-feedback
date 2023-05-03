@@ -1,5 +1,4 @@
-import { useSession } from "next-auth/react";
-import prisma from "./../../../prisma/prismaClient";
+import prisma from "../../../prisma/prismaClient";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 
@@ -7,6 +6,12 @@ interface formData {
     title: string;
     description: string;
     category: string;
+}
+
+// Get All Feedbacks
+export async function GET() {
+    const feedbacks = await prisma.feedback.findMany();
+    return NextResponse.json({ feedbacks: feedbacks });
 }
 
 // Add New Feedback

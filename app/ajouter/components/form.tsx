@@ -53,10 +53,10 @@ export default function AddFeedbackForm({
                 formData.category === ""
             )
                 return setError("Tous les champs doivent être remplis");
-            fetch("http://localhost:3000/api/addFeedback", {
+            fetch("http://localhost:3000/api/feedback", {
                 method: "POST",
                 body: JSON.stringify(formData),
-            });
+            }).then(() => router.push("/"));
         }
     }
 

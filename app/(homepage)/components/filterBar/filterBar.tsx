@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Filter from "./filter";
 import AddFeedback from "./addFeedback";

@@ -2,7 +2,7 @@ import React from "react";
 import { FaComment } from "react-icons/fa";
 import { IoIosArrowUp } from "react-icons/io";
 
-export default function FeedbackCard() {
+export default function FeedbackCard({ data }: any) {
     return (
         <div className="p-4 shadow-md rounded-xl h-[175px] w-[95vw] max-w-[800px] bg-white mb-4 md:transition-transform md:hover:-translate-y-1 md:hover:shadow-xl md:ease-in-out">
             <div className="lg:ml-24">

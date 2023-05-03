@@ -1,4 +1,3 @@
-"use client";
 import "../globals.css";
 import Navbar from "@/app/Navbar/Navbar";
 import React, { ReactNode } from "react";
