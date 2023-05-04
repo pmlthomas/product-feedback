@@ -1,3 +1,4 @@
+"use client";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import CategorySelect from "./../components/categorySelect";
@@ -6,29 +7,31 @@ interface formData {
     title: string;
     category: string;
     description: string;
+    id: string;
 }
 
 interface formProps {
-    isFilterOpen: boolean;
-    setIsFilterOpen: React.Dispatch<React.SetStateAction<boolean>>;
     oldFeedback: any;
+    id: string;
 }
 
-export default function UpdateFeedbackForm({
-    isFilterOpen,
-    setIsFilterOpen,
-    oldFeedback,
-}: formProps) {
+export default function UpdateFeedbackForm({ oldFeedback, id }: formProps) {
     const initialFormData = {
         title: oldFeedback.title,
-        category: "",
+        category: oldFeedback.category,
         description: oldFeedback.description,
+        id: id,
     };
     const router = useRouter();
-    const [currentCategory, setCurrentCategory] = useState<string>("");
+    const [currentCategory, setCurrentCategory] = useState<string>(
+        oldFeedback.category
+    );
     const [formData, setFormData] = useState(initialFormData as formData);
     const [error, setError] = useState<string>("");
-    const [descriptionLength, setDescriptionLength] = useState<number>(0);
+    const [descriptionLength, setDescriptionLength] = useState<number>(
+        oldFeedback.description.length
+    );
+    const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
 
     useEffect(() => {
         setFormData({ ...formData, category: currentCategory });
@@ -51,6 +54,7 @@ export default function UpdateFeedbackForm({
     function handleSubmit(e: any) {
         e.preventDefault();
         if (descriptionLength <= 500) {
+            console.log(formData);
             if (
                 formData.title === "" ||
                 formData.description === "" ||
@@ -58,9 +62,9 @@ export default function UpdateFeedbackForm({
             )
                 return setError("Tous les champs doivent être remplis");
             fetch("http://localhost:3000/api/feedback", {
-                method: "POST",
+                method: "PUT",
                 body: JSON.stringify(formData),
-            }).then(() => router.push("/"));
+            }).then(() => router.back());
         }
     }
 

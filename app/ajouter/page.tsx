@@ -15,7 +15,7 @@ export default function AddFeedbackPage() {
         >
             <div className="hidden w-[95vw] max-w-[570px] md:flex justify-start mb-12 -mt-14">
                 <div
-                    onClick={() => router.push("/")}
+                    onClick={() => router.back()}
                     className="flex w-fit cursor-pointer"
                 >
                     <IoIosArrowBack size={15} className="mt-1 mr-2 " />

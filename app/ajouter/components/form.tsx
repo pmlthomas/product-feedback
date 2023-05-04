@@ -112,7 +112,7 @@ export default function AddFeedbackForm({
                 <div className="flex justify-end mt-5">
                     <button
                         type="button"
-                        onClick={() => router.push("/")}
+                        onClick={() => router.back()}
                         className="bg-lightDark hover:bg-slate-700 p-2 rounded-lg text-white"
                     >
                         Annuler

@@ -6,6 +6,7 @@ interface formData {
     title: string;
     description: string;
     category: string;
+    id: string;
 }
 
 // Get All Feedbacks
@@ -56,5 +57,31 @@ export async function POST(req: Request) {
             prisma.$disconnect;
             return NextResponse.json({ status: 201 });
         }
+    }
+}
+
+export async function PUT(request: Request) {
+    const { id, title, description, category }: formData = await request.json();
+    const categoryReq = await prisma.category.findFirst({
+        where: {
+            name: category,
+        },
+        select: {
+            id: true,
+        },
+    });
+    if (categoryReq) {
+        await prisma.feedback.update({
+            where: {
+                id: id,
+            },
+            data: {
+                title,
+                description,
+                categoryId: categoryReq.id,
+            },
+        });
+        prisma.$disconnect;
+        return NextResponse.json({ status: 201 });
     }
 }
