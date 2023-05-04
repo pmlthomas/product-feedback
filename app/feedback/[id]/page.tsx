@@ -18,7 +18,6 @@ async function getFeedback(id: string) {
 
 export default async function Feedback({ params: { id } }: params) {
     const feedback = await getFeedback(id);
-    console.log(feedback);
     feedback.category = feedback.category.name;
     return (
         <div className="mt-12">

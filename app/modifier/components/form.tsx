@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import CategorySelect from "./../components/categorySelect";
+import Link from "next/link";
 
 interface formData {
     title: string;
@@ -54,13 +55,18 @@ export default function UpdateFeedbackForm({ oldFeedback, id }: formProps) {
     function handleSubmit(e: any) {
         e.preventDefault();
         if (descriptionLength <= 500) {
-            console.log(formData);
             if (
                 formData.title === "" ||
                 formData.description === "" ||
                 formData.category === ""
             )
                 return setError("Tous les champs doivent être remplis");
+            if (
+                oldFeedback.title === formData.title &&
+                oldFeedback.description === formData.description &&
+                oldFeedback.category === formData.category
+            )
+                return setError("Les informations n'ont pas changé");
             fetch("http://localhost:3000/api/feedback", {
                 method: "PUT",
                 body: JSON.stringify(formData),
@@ -120,15 +126,14 @@ export default function UpdateFeedbackForm({ oldFeedback, id }: formProps) {
                     </div>
                 )}
                 <div className="flex justify-end mt-5">
-                    <button
-                        type="button"
-                        onClick={() =>
-                            router.push(`/modifier/${oldFeedback.id}`)
-                        }
-                        className="bg-lightDark hover:bg-slate-700 p-2 rounded-lg text-white"
-                    >
-                        Annuler
-                    </button>
+                    <Link href={`/feedback/${oldFeedback.id}`}>
+                        <button
+                            type="button"
+                            className="bg-lightDark hover:bg-slate-700 p-2 rounded-lg text-white"
+                        >
+                            Annuler
+                        </button>
+                    </Link>
                     <button
                         type="submit"
                         className="bg-purple p-2 rounded-lg text-white hover:bg-[#a6128e] ml-2"
