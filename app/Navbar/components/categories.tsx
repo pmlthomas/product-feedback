@@ -1,16 +1,23 @@
+import useFilter from "@/app/context/filterContext";
 import React, { useEffect, useState } from "react";
 
 export default function Categories() {
     const categories = ["Tout", "UI", "Bug", "Amélioration"];
+    const { setChosenCategory } = useFilter();
+
     const [currentClickedCategory, setCurrentClickedCategory] =
-        useState<string>("");
+        useState<string>("Tout");
     const [categoriesButtons, setCategoriesButtons] = useState<any>(null);
 
     function handleCategoryClick(el: string) {
-        if (currentClickedCategory === el) {
-            setCurrentClickedCategory("");
-        } else {
-            setCurrentClickedCategory(el);
+        if (!(el === "Tout" && currentClickedCategory === "Tout")) {
+            if (currentClickedCategory === el) {
+                setCurrentClickedCategory("Tout");
+                setChosenCategory("Tout");
+            } else {
+                setCurrentClickedCategory(el);
+                setChosenCategory(el);
+            }
         }
     }
 

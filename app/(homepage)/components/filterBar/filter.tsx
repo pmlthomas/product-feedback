@@ -1,3 +1,4 @@
+import useFilter from "@/app/context/filterContext";
 import React, { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 
@@ -8,6 +9,7 @@ export default function Filter() {
         "Plus récents",
     ];
 
+    const { setFilterOption } = useFilter();
     const [currentFilterOption, setCurrentFilterOption] =
         useState<string>("Plus de votes");
     const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
@@ -15,6 +17,7 @@ export default function Filter() {
     function handleClickOnFilterOption(el: string) {
         setCurrentFilterOption(el);
         setIsFilterOpen(false);
+        setFilterOption(el);
     }
 
     const filterOptionsMapping = filterOptions.map((el, i) => {
