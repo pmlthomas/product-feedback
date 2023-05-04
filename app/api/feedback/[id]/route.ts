@@ -17,6 +17,11 @@ export async function GET(
                     name: true,
                 },
             },
+            ratings: {
+                select: {
+                    id: true,
+                },
+            },
         },
     });
     prisma.$disconnect;

@@ -54,6 +54,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  ratings       Rating[]
 }
 
 model Category {
@@ -66,13 +67,21 @@ model Feedback {
   id          String @id @default(uuid())
   title       String
   description String
-  rating      String?
   comments    Comment[]
+  ratings     Rating[]
   createdAt   DateTime @default(now())
   category    Category @relation(fields: [categoryId], references: [id])
   categoryId  String
   author      User @relation(fields: [authorId], references: [id])
   authorId    String
+}
+
+model Rating {
+  id         String @id @default(uuid())
+  author     User @relation(fields: [authorId], references: [id])
+  authorId   String
+  feedback   Feedback @relation(fields: [feedbackId], references: [id])
+  feedbackId String
 }
 
 model Comment {

@@ -10,15 +10,20 @@ interface params {
 }
 
 async function getFeedback(id: string) {
-    const data = await fetch(`http://localhost:3000/api/feedback/${id}`, {
+    const feedback = await fetch(`http://localhost:3000/api/feedback/${id}`, {
         cache: "no-cache",
-    }).then((res) => res.json());
-    return data.feedback;
+    })
+        .then((req) => req.json())
+        .then((res) => res.feedback);
+
+    feedback.category = feedback.category.name;
+    feedback.totalRating = feedback.ratings.length;
+
+    return feedback;
 }
 
 export default async function Feedback({ params: { id } }: params) {
     const feedback = await getFeedback(id);
-    feedback.category = feedback.category.name;
     return (
         <div className="mt-12">
             <TopNav feedbackId={id} />
