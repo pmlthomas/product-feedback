@@ -76,9 +76,10 @@ export default function AddFeedbackForm({
                     onChange={(e) => handleFormChange(e)}
                     type="text"
                     id="title"
-                    className="w-full bg-gray-200 h-12 pl-4 pr-4"
+                    className="w-full bg-gray-100 h-12 pl-4 pr-4 rounded-lg"
+                    placeholder="Écris le titre ici"
                 />
-                <p className="text-lightDark font-semibold text-xl mt-4">
+                <p className="text-lightDark font-semibold text-xl mt-5">
                     Catégorie
                 </p>
                 <p className="text-gray-700 mb-2">
@@ -90,7 +91,7 @@ export default function AddFeedbackForm({
                     isFilterOpen={isFilterOpen}
                     setIsFilterOpen={setIsFilterOpen}
                 />
-                <p className="text-lightDark font-semibold text-xl mt-4">
+                <p className="text-lightDark font-semibold text-xl mt-5">
                     Description
                 </p>
                 <p className="text-gray-700 mb-2">
@@ -99,9 +100,10 @@ export default function AddFeedbackForm({
                 <textarea
                     onChange={(e) => handleFormChange(e)}
                     id="description"
-                    className="h-28 bg-gray-200 w-full p-4"
+                    className="h-24 bg-gray-100 w-full p-4 resize-none rounded-lg"
+                    placeholder="Écris la description ici"
                 ></textarea>
-                <div className="flex justify-end">
+                <div className="flex justify-end mt-1">
                     <p>Caractères maximum: {descriptionLength} / 500</p>
                 </div>
                 {error && (
@@ -119,7 +121,7 @@ export default function AddFeedbackForm({
                     </button>
                     <button
                         type="submit"
-                        className="bg-purple p-2 rounded-lg text-white hover:bg-[#a6128e] ml-2"
+                        className="bg-purple p-2 rounded-lg text-white hover:bg-[#aa11e7] ml-2"
                     >
                         Ajouter la suggestion
                     </button>

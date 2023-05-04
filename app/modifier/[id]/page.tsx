@@ -30,13 +30,13 @@ export default async function UpdateFeedbackPage({ params: { id } }: params) {
                     </div>
                 </Link>
             </div>
-            <div className="w-[95vw] max-w-[570px] h-[680px] md:h-[660px] bg-white px-6 pt-4">
+            <div className="w-[95vw] max-w-[570px] h-[680px] md:h-[660px] bg-white px-6 pt-4 rounded-xl">
                 <div className="-mt-11 h-14 w-14 rounded-full bg-gradient-to-r from-darkBlue to-purple flex justify-center items-center">
                     <p className="text-white text-2xl select-none">
                         <HiOutlinePencilAlt />
                     </p>
                 </div>
-                <h1 className="text-lightDark font-semibold text-2xl mb-5 mt-6">
+                <h1 className="text-lightDark font-semibold text-2xl mb-6 mt-6">
                     Modifier la suggestion
                 </h1>
                 <UpdateFeedbackForm oldFeedback={oldFeedback} id={id} />

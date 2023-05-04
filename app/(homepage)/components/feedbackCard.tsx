@@ -28,7 +28,7 @@ export default function FeedbackCard({ data }: any) {
             className="cursor-pointer p-4 shadow-md rounded-xl h-[175px] w-[95vw] max-w-[800px] bg-white mb-4 md:transition-transform md:hover:-translate-y-1 md:hover:shadow-xl md:ease-in-out"
         >
             <div className="md:ml-4 lg:ml-24 lg:mt-5">
-                <h1 className="text-lightDark font-semibold text-md mb-1">
+                <h1 className="text-lightDark font-semibold text-lg mb-1">
                     {data.title}
                 </h1>
                 <p className="text-lightDark text-sm mb-4 line-clamp-1">

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import prisma from "../../../../prisma/prismaClient";
+import { getServerSession } from "next-auth";
 
 // Get Feedback By Id
 export async function GET(
@@ -26,4 +27,33 @@ export async function GET(
     });
     prisma.$disconnect;
     return NextResponse.json({ feedback: feedback });
+}
+
+export async function POST(
+    request: Request,
+    context: { params: { id: string } }
+) {
+    const feedbackId = context.params.id;
+    const serverSession = await getServerSession();
+    if (serverSession && serverSession.user?.email) {
+        const userReq = await prisma.user.findUnique({
+            where: {
+                email: serverSession.user.email,
+            },
+            select: {
+                id: true,
+            },
+        });
+        if (userReq && userReq.id) {
+            await prisma.comment.create({
+                data: {
+                    authorId: userReq.id,
+                    feedbackId: feedbackId,
+                    commentText: "",
+                },
+            });
+            prisma.$disconnect;
+            return NextResponse.json({ status: 201 });
+        }
+    }
 }

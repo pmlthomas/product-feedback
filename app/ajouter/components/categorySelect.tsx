@@ -32,10 +32,20 @@ export default function CategorySelect({
     return (
         <div
             onClick={() => setIsFilterOpen(!isFilterOpen)}
-            className="flex flex-col text-lightDark bg-gray-200 h-12"
+            className={`flex flex-col text-lightDark bg-gray-100 h-12 ${
+                isFilterOpen ? "rounded-t-lg" : "rounded-lg"
+            }`}
         >
             <div className="flex justify-between">
-                <p className="cursor-pointer ml-4 mt-3">{currentCategory}</p>
+                {currentCategory != "" ? (
+                    <p className="cursor-pointer ml-4 mt-3">
+                        {currentCategory}
+                    </p>
+                ) : (
+                    <p className="cursor-pointer ml-4 mt-3 text-gray-400">
+                        Ajoute une catégorie ici
+                    </p>
+                )}
                 {isFilterOpen ? (
                     <IoIosArrowUp
                         size={17}
@@ -49,8 +59,8 @@ export default function CategorySelect({
                 )}
             </div>
             {isFilterOpen && (
-                <div className="w-[502px] absolute p-3 pb-1 mt-12 bg-gray-300 cursor-pointer">
-                    <div className="-mt-2">{categoriesMapping}</div>
+                <div className="w-[522px] absolute p-3 pb-1 mt-12 bg-gray-200 cursor-pointer">
+                    <div className="-mt-1">{categoriesMapping}</div>
                 </div>
             )}
         </div>

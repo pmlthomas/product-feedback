@@ -2,6 +2,7 @@ import React from "react";
 import FeedbackCard from "../../(homepage)/components/feedbackCard";
 import Comment from "./components/comment";
 import TopNav from "./components/topNav";
+import AddComment from "./addComment";
 
 interface params {
     params: {
@@ -27,7 +28,7 @@ export default async function Feedback({ params: { id } }: params) {
     return (
         <div className="mt-12">
             <TopNav feedbackId={id} />
-            <div className="mt-2 mb-12">
+            <div className="mt-2 mb-28">
                 <FeedbackCard data={feedback} />
                 <div className="flex flex-col p-6 pl-8 shadow-md rounded-xl w-[95vw] max-w-[800px] bg-white mt-6 md:transition-transform md:hover:-translate-y-1 md:hover:shadow-xl md:ease-in-out">
                     <h1 className="text-lg text-lightDark font-semibold">
@@ -37,6 +38,9 @@ export default async function Feedback({ params: { id } }: params) {
                     <Comment />
                     <Comment />
                     <Comment />
+                </div>
+                <div className="mt-3">
+                    <AddComment feedbackId={id} />
                 </div>
             </div>
         </div>
