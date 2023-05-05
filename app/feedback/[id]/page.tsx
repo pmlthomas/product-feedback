@@ -26,8 +26,7 @@ async function getFeedback(id: string) {
 export default async function Feedback({ params: { id } }: params) {
     const feedback = await getFeedback(id);
     const commentsDisplay = feedback.comments.map((comment: any, i: number) => {
-        i === feedback.comments.length - 1 &&
-            console.log("last one", comment.commentText);
+        if (i === feedback.comments.length - 1) comment.isLastOne = true;
         return (
             <div key={i}>
                 <Comment data={comment} />

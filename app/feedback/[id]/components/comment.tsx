@@ -25,8 +25,14 @@ export default function Comment({ data }: any) {
                     Répondre
                 </p>
             </div>
-            <p className="mt-4 text-gray-500 ml-[70px]">{data.commentText}</p>
-            <hr className="mt-10" />
+            <p
+                className={`mt-4 text-gray-500 ml-[70px] ${
+                    data.isLastOne && "mb-5"
+                }`}
+            >
+                {data.commentText}
+            </p>
+            {!data.isLastOne && <hr className="mt-10" />}
         </>
     );
 }
