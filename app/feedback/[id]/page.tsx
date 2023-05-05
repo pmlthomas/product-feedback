@@ -40,7 +40,7 @@ export default async function Feedback({ params: { id } }: params) {
             <div className="mt-2 mb-36">
                 <FeedbackCard data={feedback} />
                 {feedback.comments.length > 0 && (
-                    <div className="flex flex-col p-6 pl-8 shadow-md rounded-xl w-[95vw] max-w-[800px] bg-white mt-6 md:transition-transform md:hover:-translate-y-1 md:hover:shadow-xl md:ease-in-out">
+                    <div className="flex flex-col p-6 pl-8 pb-10 shadow-md rounded-xl w-[95vw] max-w-[800px] bg-white mt-6 md:transition-transform md:hover:-translate-y-1 md:hover:shadow-xl md:ease-in-out">
                         <h1 className="text-lg text-lightDark font-semibold">
                             {feedback.comments.length} Commentaire
                             {feedback.comments.length > 1 && "s"}

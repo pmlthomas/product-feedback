@@ -23,7 +23,7 @@ export default function Reply({ data }: any) {
                     </p>
                 </div>
             </div>
-            <div className="flex mt-3 ml-[70px] mb-7">
+            <div className="flex ml-[70px] mb-4">
                 <p className="text-purple mr-1.5">@{data.repliedTo.username}</p>
                 <p className="text-gray-500">{data.replyText}</p>
             </div>

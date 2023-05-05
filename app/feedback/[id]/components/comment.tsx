@@ -43,7 +43,7 @@ export default function Comment({ data }: any) {
             </div>
             <p
                 className={`mt-3 text-gray-500 ml-[70px] ${
-                    data.isLastOne && "mb-5"
+                    data.isLastOne ? "mb-4" : "mb-4"
                 }`}
             >
                 {data.commentText}
@@ -62,7 +62,7 @@ export default function Comment({ data }: any) {
                 />
             </div>
             {repliesMapping}
-            {!data.isLastOne && <hr className="mt-9" />}
+            {!data.isLastOne && <hr className="mt-5" />}
         </>
     );
 }
