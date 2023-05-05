@@ -1,8 +1,16 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useRef, useState } from "react";
 import userImage from "../../../../public/images/blank_profile_img.webp";
+import ReplyToComment from "./replyToComment";
 
-export default function Comment({ data }: any) {
+export default function Comment({ data, feedbackId }: any) {
+    const [isReplyOpen, setIsReplyOpen] = useState<boolean>(false);
+
+    function handleReply() {
+        setIsReplyOpen(true);
+    }
+
     return (
         <>
             <div className="flex mt-9">
@@ -21,7 +29,10 @@ export default function Comment({ data }: any) {
                         @{data.author.username}
                     </p>
                 </div>
-                <p className="mr-2 mt-2.5 text-darkBlue font-semibold text-sm select-none cursor-pointer">
+                <p
+                    onClick={() => handleReply()}
+                    className="mr-2 mt-2.5 h-fit text-darkBlue font-semibold text-sm select-none cursor-pointer"
+                >
                     Répondre
                 </p>
             </div>
@@ -32,6 +43,19 @@ export default function Comment({ data }: any) {
             >
                 {data.commentText}
             </p>
+            <div
+                className={`${
+                    isReplyOpen
+                        ? "clip-path-bottom h-full"
+                        : "clip-path-top h-0"
+                } w-full transition-all duration-[400ms] ease-in-out`}
+            >
+                <ReplyToComment
+                    usernameToReply={`@${data.author.username}`}
+                    feedbackId={feedbackId}
+                    setIsReplyOpen={setIsReplyOpen}
+                />
+            </div>
             {!data.isLastOne && <hr className="mt-10" />}
         </>
     );

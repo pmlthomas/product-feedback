@@ -1,16 +1,12 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 export default function AddComment({ feedbackId }: any) {
     const router = useRouter();
     const [commentText, setCommentText] = useState<string>("");
     const [remainingLength, setRemainingLength] = useState<number>(250);
     const [error, setError] = useState<string>("");
-
-    useEffect(() => {
-        console.log(commentText);
-    }, [commentText]);
 
     function handleChange(e: any) {
         250 - e.target.value.length >= 0 &&
