@@ -9,6 +9,11 @@
         "lint": "next lint"
     },
     "dependencies": {
+        "@emotion/react": "^11.10.8",
+        "@emotion/server": "^11.10.0",
+        "@mantine/core": "^6.0.10",
+        "@mantine/hooks": "^6.0.10",
+        "@mantine/next": "^6.0.10",
         "@next-auth/prisma-adapter": "^0.4.4-canary.81",
         "@prisma/client": "^4.13.0",
         "@types/node": "18.16.3",

@@ -3,7 +3,7 @@ import Homepage from "./feedbacksDisplay";
 
 async function getFeedbacks() {
     const data = await fetch("http://localhost:3000/api/feedback", {
-        cache: "no-store",
+        cache: "no-cache",
     })
         .then((req) => req.json())
         .then((res) => res.feedbacks);
