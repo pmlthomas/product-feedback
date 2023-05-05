@@ -3,26 +3,26 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 type replyToCommentType = {
-    usernameToReply: string;
-    feedbackId: string;
+    commentUserData: any;
+    commentId: string;
     setIsReplyOpen: any;
 };
 
 export default function ReplyToComment({
-    usernameToReply,
-    feedbackId,
+    commentUserData,
+    commentId,
     setIsReplyOpen,
 }: replyToCommentType) {
     const router = useRouter();
     const [replyText, setReplyText] = useState<string>("");
     const [remainingLength, setRemainingLength] = useState<number>(250);
     const [error, setError] = useState<string>("");
-    const usernameToReplyStr = `${usernameToReply} `;
+    const usernameToReplyStr = `@${commentUserData.username} `;
 
     function handleChange(e: any) {
         250 - e.target.value.length >= 0 &&
             setRemainingLength(
-                250 + usernameToReply.length - e.target.value.length
+                250 + commentUserData.username.length - e.target.value.length
             );
 
         if (e.target.value.length < 250) {
@@ -40,12 +40,16 @@ export default function ReplyToComment({
         e.preventDefault();
         if (remainingLength === 250) return setError("Le commentaire est vide");
         if (replyText.length <= 250) {
-            fetch(`http://localhost:3000/api/feedback/reply/${feedbackId}`, {
+            fetch(`http://localhost:3000/api/feedback/reply/${commentId}`, {
                 method: "POST",
-                body: JSON.stringify({ replyText: replyText }),
+                body: JSON.stringify({
+                    replyText: replyText,
+                    repliedTo: commentUserData.email,
+                }),
             }).then(() => {
-                router.refresh();
                 setReplyText("");
+                router.refresh();
+                setIsReplyOpen(false);
             });
         }
     }

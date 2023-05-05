@@ -55,6 +55,8 @@ model User {
   accounts      Account[]
   sessions      Session[]
   ratings       Rating[]
+  replies       Reply[] @relation("replyAuthor")
+  repliedTo     Reply[] @relation("repliedTo")
 }
 
 model Category {
@@ -96,8 +98,13 @@ model Comment {
 }
 
 model Reply {
-    id        String  @id @default(uuid())
-    comment   Comment @relation(fields: [commentId], references: [id])
-    commentId String
-    replyText String @db.Text
+    id          String  @id @default(uuid())
+    replyText   String  @db.Text
+    comment     Comment @relation(fields: [commentId], references: [id])
+    commentId   String
+    author      User    @relation("replyAuthor", fields: [authorId], references: [id])
+    authorId    String
+    repliedTo   User    @relation("repliedTo", fields: [repliedToId], references: [id])  
+    repliedToId String
+    createdAt   DateTime @default(now())
 }

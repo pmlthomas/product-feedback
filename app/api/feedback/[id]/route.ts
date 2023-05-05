@@ -25,12 +25,33 @@ export async function GET(
             },
             comments: {
                 select: {
+                    replies: {
+                        select: {
+                            repliedTo: {
+                                select: {
+                                    username: true,
+                                },
+                            },
+                            replyText: true,
+                            author: {
+                                select: {
+                                    name: true,
+                                    username: true,
+                                },
+                            },
+                        },
+                        orderBy: {
+                            createdAt: "asc",
+                        },
+                    },
                     author: {
                         select: {
                             name: true,
                             username: true,
+                            email: true,
                         },
                     },
+                    id: true,
                     commentText: true,
                 },
                 orderBy: {

@@ -1,11 +1,20 @@
 "use client";
 import Image from "next/image";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import userImage from "../../../../public/images/blank_profile_img.webp";
 import ReplyToComment from "./replyToComment";
+import Reply from "./reply";
 
-export default function Comment({ data, feedbackId }: any) {
+export default function Comment({ data }: any) {
     const [isReplyOpen, setIsReplyOpen] = useState<boolean>(false);
+
+    const repliesMapping = data.replies.map((el: any, i: number) => {
+        return (
+            <div key={i}>
+                <Reply data={el} />
+            </div>
+        );
+    });
 
     return (
         <>
@@ -33,7 +42,7 @@ export default function Comment({ data, feedbackId }: any) {
                 </p>
             </div>
             <p
-                className={`mt-4 text-gray-500 ml-[70px] ${
+                className={`mt-3 text-gray-500 ml-[70px] ${
                     data.isLastOne && "mb-5"
                 }`}
             >
@@ -47,12 +56,13 @@ export default function Comment({ data, feedbackId }: any) {
                 } w-full transition-all duration-[400ms] ease-in-out`}
             >
                 <ReplyToComment
-                    usernameToReply={`@${data.author.username}`}
-                    feedbackId={feedbackId}
+                    commentUserData={data.author}
+                    commentId={data.id}
                     setIsReplyOpen={setIsReplyOpen}
                 />
             </div>
-            {!data.isLastOne && <hr className="mt-10" />}
+            {repliesMapping}
+            {!data.isLastOne && <hr className="mt-9" />}
         </>
     );
 }

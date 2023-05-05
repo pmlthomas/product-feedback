@@ -33,7 +33,7 @@ export default function AddFeedbackForm({
     function handleFormChange(e: any) {
         if (e.target.id === "description") {
             setDescriptionLength(e.target.value.length);
-            if (e.target.value.length < 500) {
+            if (e.target.value.length < 250) {
                 setFormData({ ...formData, [e.target.id]: e.target.value });
                 setError("");
             } else {
@@ -46,7 +46,7 @@ export default function AddFeedbackForm({
 
     function handleSubmit(e: any) {
         e.preventDefault();
-        if (descriptionLength <= 500) {
+        if (descriptionLength <= 250) {
             if (
                 formData.title === "" ||
                 formData.description === "" ||
@@ -104,7 +104,7 @@ export default function AddFeedbackForm({
                     placeholder="Écris la description ici"
                 ></textarea>
                 <div className="flex justify-end mt-1">
-                    <p>Caractères maximum: {descriptionLength} / 500</p>
+                    <p>Caractères maximum: {descriptionLength} / 250</p>
                 </div>
                 {error && (
                     <div className="flex justify-center mt-1 -mb-2">

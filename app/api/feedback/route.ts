@@ -23,6 +23,11 @@ export async function GET() {
                     id: true,
                 },
             },
+            comments: {
+                select: {
+                    id: true,
+                },
+            },
         },
     });
     prisma.$disconnect;

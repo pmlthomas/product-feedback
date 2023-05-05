@@ -30,7 +30,7 @@ export default async function Feedback({ params: { id } }: params) {
         if (i === feedback.comments.length - 1) comment.isLastOne = true;
         return (
             <div key={i}>
-                <Comment data={comment} feedbackId={id} />
+                <Comment data={comment} />
             </div>
         );
     });
