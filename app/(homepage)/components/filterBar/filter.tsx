@@ -1,6 +1,6 @@
 import useFilter from "@/app/context/filterContext";
-import React, { useState } from "react";
-import { IoIosArrowDown } from "react-icons/io";
+import React, { useEffect, useRef, useState } from "react";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 export default function Filter() {
     const filterOptions = [
@@ -10,14 +10,29 @@ export default function Filter() {
     ];
 
     const { setFilterOption } = useFilter();
+    const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
     const [currentFilterOption, setCurrentFilterOption] =
         useState<string>("Plus de votes");
-    const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
+    const filterRef = useRef<HTMLDivElement>(null);
 
     function handleClickOnFilterOption(el: string) {
         setCurrentFilterOption(el);
         setIsFilterOpen(false);
         setFilterOption(el);
+    }
+
+    // Closing filter When clicking outside of it
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [filterRef]);
+
+    function handleClickOutside(e: any) {
+        if (filterRef.current && !filterRef.current.contains(e.target)) {
+            setIsFilterOpen(false);
+        }
     }
 
     const filterOptionsMapping = filterOptions.map((el, i) => {
@@ -26,7 +41,7 @@ export default function Filter() {
                 <p
                     onClick={() => handleClickOnFilterOption(el)}
                     key={i}
-                    className="pb-2"
+                    className="pt-1 pb-2"
                 >
                     {el}
                 </p>
@@ -35,22 +50,36 @@ export default function Filter() {
     });
 
     return (
-        <div className="flex flex-col text-white ml-3 md:m-0">
+        <div ref={filterRef} className="flex flex-col text-white ml-3 md:m-0">
             <div className="flex">
                 <p
-                    onClick={() => setIsFilterOpen(!isFilterOpen)}
+                    onClick={(e) => {
+                        setIsFilterOpen(!isFilterOpen);
+                    }}
                     className="cursor-pointer"
                 >
                     {currentFilterOption}
                 </p>
-                <IoIosArrowDown
-                    onClick={() => setIsFilterOpen(!isFilterOpen)}
-                    size={17}
-                    className="mt-1 ml-1 cursor-pointer"
-                />
+                {isFilterOpen ? (
+                    <IoIosArrowUp
+                        onClick={(e) => {
+                            setIsFilterOpen(false);
+                        }}
+                        size={17}
+                        className="mt-1 ml-[5px] cursor-pointer"
+                    />
+                ) : (
+                    <IoIosArrowDown
+                        onClick={(e) => {
+                            setIsFilterOpen(true);
+                        }}
+                        size={17}
+                        className="mt-1 ml-[5px] cursor-pointer"
+                    />
+                )}
             </div>
             {isFilterOpen && (
-                <div className="w-[195px] absolute -ml-3 p-3 pb-1 mt-5 bg-lightDark cursor-pointer">
+                <div className="w-[200px] absolute z-10 -ml-3 p-3 pb-1 mt-5 bg-lightDark cursor-pointer rounded-xl">
                     {filterOptionsMapping}
                 </div>
             )}

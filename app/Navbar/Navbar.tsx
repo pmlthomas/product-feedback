@@ -9,7 +9,7 @@ export default function Navbar() {
 
     return (
         <div
-            className="flex flex-col 
+            className="flex flex-col
                         md:flex-row md:mt-10 md:justify-center md:gap-4 md:max-w-[800px] md:w-[95vw] 
                         lg:flex-col lg:w-fit lg:justify-start lg:mt-12 lg:mr-8 lg:gap-7
             "
