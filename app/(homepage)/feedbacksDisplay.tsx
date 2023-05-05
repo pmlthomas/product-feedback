@@ -56,7 +56,7 @@ export default function Homepage({ feedbacks }: any) {
             .filter((el: any) => el !== undefined);
     }
 
-    function displayFeedbacks(feedbacks: any) {
+    function handleFeedbacksDisplay(feedbacks: any) {
         const filteredFeedbacks = filterBarFilter(categoryFilter(feedbacks));
         setTotalPages(Math.ceil(filteredFeedbacks.length / perPage));
         setFeedbacksDisplay(
@@ -65,7 +65,7 @@ export default function Homepage({ feedbacks }: any) {
     }
 
     useEffect(() => {
-        displayFeedbacks(feedbacks);
+        handleFeedbacksDisplay(feedbacks);
     }, [filterOption, chosenCategory, activePage]);
 
     useEffect(() => {
