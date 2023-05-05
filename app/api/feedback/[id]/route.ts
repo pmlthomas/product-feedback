@@ -33,6 +33,9 @@ export async function GET(
                     },
                     commentText: true,
                 },
+                orderBy: {
+                    createdAt: "desc",
+                },
             },
         },
     });

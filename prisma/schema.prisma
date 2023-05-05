@@ -92,6 +92,7 @@ model Comment {
   authorId    String
   replies     Reply[]
   commentText String @db.Text
+  createdAt   DateTime @default(now())
 }
 
 model Reply {

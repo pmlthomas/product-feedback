@@ -1,16 +1,22 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function AddComment({ feedbackId }: any) {
     const router = useRouter();
     const [commentText, setCommentText] = useState<string>("");
-    const [descriptionLength, setDescriptionLength] = useState<number>(0);
+    const [remainingLength, setRemainingLength] = useState<number>(250);
     const [error, setError] = useState<string>("");
 
+    useEffect(() => {
+        console.log(commentText);
+    }, [commentText]);
+
     function handleChange(e: any) {
-        setDescriptionLength(e.target.value.length);
-        if (e.target.value.length < 500) {
+        250 - e.target.value.length >= 0 &&
+            setRemainingLength(250 - e.target.value.length);
+
+        if (e.target.value.length < 250) {
             setCommentText(e.target.value);
             setError("");
         } else {
@@ -20,12 +26,15 @@ export default function AddComment({ feedbackId }: any) {
 
     function handleSubmit(e: any) {
         e.preventDefault();
-        if (descriptionLength === 0) return setError("Le commentaire est vide");
-        if (descriptionLength <= 500) {
+        if (remainingLength === 250) return setError("Le commentaire est vide");
+        if (commentText.length <= 250) {
             fetch(`http://localhost:3000/api/feedback/${feedbackId}`, {
                 method: "POST",
                 body: JSON.stringify({ commentText: commentText }),
-            }).then(() => router.refresh());
+            }).then(() => {
+                router.refresh();
+                setCommentText("");
+            });
         }
     }
 
@@ -38,6 +47,7 @@ export default function AddComment({ feedbackId }: any) {
                 <textarea
                     onChange={(e) => handleChange(e)}
                     id="description"
+                    value={commentText}
                     className="h-24 bg-gray-100 w-full p-5 pl-6 mt-4 rounded-lg resize-none"
                     placeholder="Écrit ton commentaire ici"
                 ></textarea>
@@ -47,7 +57,7 @@ export default function AddComment({ feedbackId }: any) {
                     </div>
                 )}
                 <div className="w-full flex justify-between mt-[14px]">
-                    <p className="mt-2">250 Caratères restants</p>
+                    <p className="mt-2">{remainingLength} Caratères restants</p>
                     <button
                         type="submit"
                         className="p-2 bg-purple rounded-xl text-white"
