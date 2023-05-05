@@ -35,7 +35,11 @@ export default function AddComment({ feedbackId }: any) {
     }
 
     return (
-        <div className="h-64 p-6 px-8 bg-white rounded-xl lg:transition-transform lg:translate-y-2 lg:shadow-xl lg:ease-in-out">
+        <div
+            className="h-64 p-6 px-8 bg-white rounded-xl 
+                        md:transition-transform md:hover:-translate-y-1 md:hover:shadow-xl md:ease-in-out
+                        lg:transition-transform lg:translate-y-2 lg:shadow-xl lg:ease-in-out"
+        >
             <h1 className="text-lightDark font-semibold text-lg mb-1">
                 Ajouter un commentaire
             </h1>

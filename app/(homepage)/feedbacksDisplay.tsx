@@ -35,9 +35,17 @@ export default function Homepage({ feedbacks }: any) {
 
     function filterBarFilter(feedbacks: any) {
         switch (filterOption) {
-            case "mostVoted":
+            case "Plus de votes":
                 return feedbacks.sort(function (a: any, b: any) {
                     return a.totalRating < b.totalRating;
+                });
+            case "Plus de commentaires":
+                return feedbacks.sort(function (a: any, b: any) {
+                    return a.comments.length < b.comments.length;
+                });
+            case "Plus récents":
+                return feedbacks.sort(function (a: any, b: any) {
+                    return a.createdAt < b.createdAt;
                 });
         }
     }

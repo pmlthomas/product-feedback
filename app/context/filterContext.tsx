@@ -11,7 +11,7 @@ interface filterType {
 const FilterContext = createContext({} as filterType);
 
 export const FilterProvider = ({ children }: any) => {
-    const [filterOption, setFilterOption] = useState<string>("mostVoted");
+    const [filterOption, setFilterOption] = useState<string>("Plus de votes");
     const [chosenCategory, setChosenCategory] = useState<string>("Tout");
 
     return (
