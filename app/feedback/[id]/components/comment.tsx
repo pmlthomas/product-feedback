@@ -7,10 +7,6 @@ import ReplyToComment from "./replyToComment";
 export default function Comment({ data, feedbackId }: any) {
     const [isReplyOpen, setIsReplyOpen] = useState<boolean>(false);
 
-    function handleReply() {
-        setIsReplyOpen(true);
-    }
-
     return (
         <>
             <div className="flex mt-9">
@@ -30,7 +26,7 @@ export default function Comment({ data, feedbackId }: any) {
                     </p>
                 </div>
                 <p
-                    onClick={() => handleReply()}
+                    onClick={() => setIsReplyOpen(!isReplyOpen)}
                     className="mr-2 mt-2.5 h-fit text-darkBlue font-semibold text-sm select-none cursor-pointer"
                 >
                     Répondre
