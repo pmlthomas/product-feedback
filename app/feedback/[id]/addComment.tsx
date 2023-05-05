@@ -4,14 +4,14 @@ import React, { useState } from "react";
 
 export default function AddComment({ feedbackId }: any) {
     const router = useRouter();
-    const [comment, setComment] = useState<string>("");
+    const [commentText, setCommentText] = useState<string>("");
     const [descriptionLength, setDescriptionLength] = useState<number>(0);
     const [error, setError] = useState<string>("");
 
     function handleChange(e: any) {
         setDescriptionLength(e.target.value.length);
         if (e.target.value.length < 500) {
-            setComment(e.target.value);
+            setCommentText(e.target.value);
             setError("");
         } else {
             setError("Nombre maximum de caratères atteint");
@@ -24,7 +24,7 @@ export default function AddComment({ feedbackId }: any) {
         if (descriptionLength <= 500) {
             fetch(`http://localhost:3000/api/feedback/${feedbackId}`, {
                 method: "POST",
-                body: comment,
+                body: JSON.stringify({ commentText: commentText }),
             }).then(() => router.refresh());
         }
     }
@@ -46,7 +46,7 @@ export default function AddComment({ feedbackId }: any) {
                         <span className="text-red-600">*{error}</span>
                     </div>
                 )}
-                <div className="w-full flex justify-between mt-3">
+                <div className="w-full flex justify-between mt-[14px]">
                     <p className="mt-2">250 Caratères restants</p>
                     <button
                         type="submit"

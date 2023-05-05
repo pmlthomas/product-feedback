@@ -23,16 +23,29 @@ export async function GET(
                     id: true,
                 },
             },
+            comments: {
+                select: {
+                    author: {
+                        select: {
+                            name: true,
+                            username: true,
+                        },
+                    },
+                    commentText: true,
+                },
+            },
         },
     });
     prisma.$disconnect;
     return NextResponse.json({ feedback: feedback });
 }
 
+// Posting a New Comment
 export async function POST(
     request: Request,
     context: { params: { id: string } }
 ) {
+    const { commentText } = await request.json();
     const feedbackId = context.params.id;
     const serverSession = await getServerSession();
     if (serverSession && serverSession.user?.email) {
@@ -49,7 +62,7 @@ export async function POST(
                 data: {
                     authorId: userReq.id,
                     feedbackId: feedbackId,
-                    commentText: "",
+                    commentText: commentText,
                 },
             });
             prisma.$disconnect;

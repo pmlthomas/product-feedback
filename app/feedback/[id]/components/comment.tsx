@@ -15,19 +15,17 @@ export default function Comment({ data }: any) {
                 />
                 <div className="flex flex-col ml-6 w-full">
                     <p className="text-lightDark font-semibold">
-                        User fullname
+                        {data.author.name}
                     </p>
-                    <p className="text-gray-500 text-sm">@User username</p>
+                    <p className="text-gray-500 text-sm">
+                        @{data.author.username}
+                    </p>
                 </div>
                 <p className="mr-2 mt-2.5 text-darkBlue font-semibold text-sm select-none cursor-pointer">
                     Répondre
                 </p>
             </div>
-            <p className="mt-4 text-gray-500 ml-[70px]">
-                ext ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also
-            </p>
+            <p className="mt-4 text-gray-500 ml-[70px]">{data.commentText}</p>
             <hr className="mt-10" />
         </>
     );

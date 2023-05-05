@@ -25,21 +25,29 @@ async function getFeedback(id: string) {
 
 export default async function Feedback({ params: { id } }: params) {
     const feedback = await getFeedback(id);
+    const commentsDisplay = feedback.comments.map((comment: any, i: number) => {
+        i === feedback.comments && console.log("last one", comment.commentText);
+        return (
+            <div key={i}>
+                <Comment data={comment} />
+            </div>
+        );
+    });
     return (
         <div className="mt-12">
             <TopNav feedbackId={id} />
             <div className="mt-2 mb-28">
                 <FeedbackCard data={feedback} />
-                <div className="flex flex-col p-6 pl-8 shadow-md rounded-xl w-[95vw] max-w-[800px] bg-white mt-6 md:transition-transform md:hover:-translate-y-1 md:hover:shadow-xl md:ease-in-out">
-                    <h1 className="text-lg text-lightDark font-semibold">
-                        4 Commentaires
-                    </h1>
-                    <Comment />
-                    <Comment />
-                    <Comment />
-                    <Comment />
-                </div>
-                <div className="mt-3">
+                {feedback.comments.length > 0 && (
+                    <div className="flex flex-col p-6 pl-8 shadow-md rounded-xl w-[95vw] max-w-[800px] bg-white mt-6 md:transition-transform md:hover:-translate-y-1 md:hover:shadow-xl md:ease-in-out">
+                        <h1 className="text-lg text-lightDark font-semibold">
+                            {feedback.comments.length} Commentaire
+                            {feedback.comments.length > 1 && "s"}
+                        </h1>
+                        {commentsDisplay}
+                    </div>
+                )}
+                <div className="mt-5">
                     <AddComment feedbackId={id} />
                 </div>
             </div>
