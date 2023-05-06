@@ -5,6 +5,7 @@ import { FaComment } from "react-icons/fa";
 import { IoIosArrowUp } from "react-icons/io";
 import { updateRating } from "../actions";
 import { useTransition } from "react";
+import { useSession } from "next-auth/react";
 
 export default function FeedbackCard({ data }: any) {
     const router = useRouter();
@@ -12,6 +13,7 @@ export default function FeedbackCard({ data }: any) {
     const [isVoted, setIsVoted] = useState<boolean>(false);
     const [feedbackRating, setFeedbackRating] = useState<number>(0);
     let [isPending, startTransition] = useTransition();
+    const { data: session } = useSession();
 
     useEffect(() => {
         setFeedbackRating(data.totalRating);
@@ -41,8 +43,14 @@ export default function FeedbackCard({ data }: any) {
                     onClick={(e) => {
                         e.stopPropagation();
                         startTransition(
-                            () => void updateRating(data.id, isVoted)
+                            () =>
+                                void updateRating(
+                                    data.id,
+                                    isVoted,
+                                    session?.user.email
+                                )
                         );
+                        router.refresh();
                     }}
                     className={`flex p-1 pt-1.5 px-4 text-sm rounded-xl w-fit font-semibold cursor-pointer select-none bg-gray-100 ${
                         isVoted ? "text-darkBlue" : "text-lightDark"

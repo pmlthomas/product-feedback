@@ -12,7 +12,6 @@ export default function ClientComponent({ feedbacks }: any) {
     const [activePage, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState<number>(0);
     const perPage = 2;
-    const router = useRouter();
 
     function paginate(content: any[], page_size: number, page_number: number) {
         if (content.length >= 2) {
