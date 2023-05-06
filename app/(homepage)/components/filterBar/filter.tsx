@@ -2,7 +2,6 @@ import useFilter from "@/app/context/filterContext";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { useTransition } from "react";
 
 export default function Filter() {
     const filterOptions = [
@@ -11,28 +10,12 @@ export default function Filter() {
         "Plus récents",
     ];
 
-    // const filterOptions = [
-    //     {
-    //         name: "Plus de votes",
-    //         action: "getMostVoted",
-    //     },
-    //     {
-    //         name: "Plus de commentaires",
-    //         action: "getMostCommented",
-    //     },
-    //     {
-    //         name: "Plus récents",
-    //         action: "getMostRecent",
-    //     },
-    // ];
-
     const { setFilterOption } = useFilter();
     const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
     const [currentFilterOption, setCurrentFilterOption] =
         useState<string>("Plus de votes");
     const filterRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
-    let [isPending, startTransition] = useTransition();
 
     function handleClickOnFilterOption(el: any) {
         setCurrentFilterOption(el);
@@ -73,7 +56,7 @@ export default function Filter() {
         <div ref={filterRef} className="flex flex-col text-white ml-3 md:m-0">
             <div className="flex">
                 <p
-                    onClick={(e) => {
+                    onClick={() => {
                         setIsFilterOpen(!isFilterOpen);
                     }}
                     className="cursor-pointer"
@@ -82,7 +65,7 @@ export default function Filter() {
                 </p>
                 {isFilterOpen ? (
                     <IoIosArrowUp
-                        onClick={(e) => {
+                        onClick={() => {
                             setIsFilterOpen(false);
                         }}
                         size={17}
@@ -90,7 +73,7 @@ export default function Filter() {
                     />
                 ) : (
                     <IoIosArrowDown
-                        onClick={(e) => {
+                        onClick={() => {
                             setIsFilterOpen(true);
                         }}
                         size={17}

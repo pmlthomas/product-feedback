@@ -1,35 +1,22 @@
 "use client";
 import { usePathname, useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaComment } from "react-icons/fa";
 import { IoIosArrowUp } from "react-icons/io";
+import { updateRating } from "../actions";
+import { useTransition } from "react";
 
 export default function FeedbackCard({ data }: any) {
     const router = useRouter();
     const pathname = usePathname();
-    const [isVoted, setIsVoted] = useState<boolean>(data.isVoted);
-    const [feedbackRating, setFeedbackRating] = useState<number>(
-        data.totalRating
-    );
+    const [isVoted, setIsVoted] = useState<boolean>(false);
+    const [feedbackRating, setFeedbackRating] = useState<number>(0);
+    let [isPending, startTransition] = useTransition();
 
-    async function handleRating(e: any) {
-        e.stopPropagation();
-        fetch("http://localhost:3000/api/feedback/rating", {
-            method: "POST",
-            body: JSON.stringify({
-                feedbackId: data.id,
-                isVoted: isVoted,
-            }),
-        });
-        if (isVoted) {
-            setFeedbackRating(feedbackRating - 1);
-            setIsVoted(false);
-        } else {
-            setFeedbackRating(feedbackRating + 1);
-            setIsVoted(true);
-        }
-        // router.refresh();
-    }
+    useEffect(() => {
+        setFeedbackRating(data.totalRating);
+        setIsVoted(data.isVoted);
+    }, [data]);
 
     return (
         <div
@@ -50,9 +37,12 @@ export default function FeedbackCard({ data }: any) {
                 </p>
             </div>
             <div className="flex justify-between mr-4 md:ml-3 lg:ml-4 lg:-mt-10">
-                <button
+                <div
                     onClick={(e) => {
-                        handleRating(e);
+                        e.stopPropagation();
+                        startTransition(
+                            () => void updateRating(data.id, isVoted)
+                        );
                     }}
                     className={`flex p-1 pt-1.5 px-4 text-sm rounded-xl w-fit font-semibold cursor-pointer select-none bg-gray-100 ${
                         isVoted ? "text-darkBlue" : "text-lightDark"
@@ -63,7 +53,7 @@ export default function FeedbackCard({ data }: any) {
                         className="mt-0.5 mr-1 -ml-[2.5px] cursor-pointer lg:ml-[4px] lg:mr-[4px]"
                     />
                     <p className="text-center">{feedbackRating}</p>
-                </button>
+                </div>
                 <div className="flex mt-[7px] lg:mt-3">
                     <FaComment size={20} color="#d1d5db" className="mr-2" />
                     <p className="text-sm font-semibold">

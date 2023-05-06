@@ -14,8 +14,6 @@ export default function ClientComponent({ feedbacks }: any) {
     const perPage = 2;
     const router = useRouter();
 
-    console.log("from serverComponent", feedbacks);
-
     function paginate(content: any[], page_size: number, page_number: number) {
         if (content.length >= 2) {
             return content.slice(
@@ -85,7 +83,10 @@ export default function ClientComponent({ feedbacks }: any) {
     }
 
     useEffect(() => {
-        router.refresh();
+        displayFeedbacks(feedbacks);
+    }, [feedbacks]);
+
+    useEffect(() => {
         displayFeedbacks(feedbacks);
     }, [filterOption, chosenCategory, activePage]);
 

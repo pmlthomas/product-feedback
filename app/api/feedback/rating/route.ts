@@ -31,7 +31,6 @@ export async function POST(req: Request) {
                     },
                 });
             }
-
             prisma.$disconnect;
             return NextResponse.json({ status: 201 });
         }
