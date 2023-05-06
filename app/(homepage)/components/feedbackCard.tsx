@@ -7,18 +7,28 @@ import { IoIosArrowUp } from "react-icons/io";
 export default function FeedbackCard({ data }: any) {
     const router = useRouter();
     const pathname = usePathname();
+    const [isVoted, setIsVoted] = useState<boolean>(data.isVoted);
     const [feedbackRating, setFeedbackRating] = useState<number>(
         data.totalRating
     );
 
-    function handleRating(e: any) {
+    async function handleRating(e: any) {
         e.stopPropagation();
         fetch("http://localhost:3000/api/feedback/rating", {
             method: "POST",
             body: JSON.stringify({
                 feedbackId: data.id,
+                isVoted: isVoted,
             }),
-        }).then(() => setFeedbackRating(feedbackRating + 1));
+        });
+        if (isVoted) {
+            setFeedbackRating(feedbackRating - 1);
+            setIsVoted(false);
+        } else {
+            setFeedbackRating(feedbackRating + 1);
+            setIsVoted(true);
+        }
+        // router.refresh();
     }
 
     return (
@@ -40,16 +50,20 @@ export default function FeedbackCard({ data }: any) {
                 </p>
             </div>
             <div className="flex justify-between mr-4 md:ml-3 lg:ml-4 lg:-mt-10">
-                <div
-                    onClick={(e) => handleRating(e)}
-                    className="flex p-1 pt-1.5 px-4 text-sm rounded-xl w-fit font-semibold cursor-pointer select-none bg-gray-100 text-darkBlue h-fit pb-2 lg:-mt-[72px] lg:flex-col"
+                <button
+                    onClick={(e) => {
+                        handleRating(e);
+                    }}
+                    className={`flex p-1 pt-1.5 px-4 text-sm rounded-xl w-fit font-semibold cursor-pointer select-none bg-gray-100 ${
+                        isVoted ? "text-darkBlue" : "text-lightDark"
+                    } h-fit pb-2 lg:-mt-[72px] lg:flex-col`}
                 >
                     <IoIosArrowUp
                         size={15}
                         className="mt-0.5 mr-1 -ml-[2.5px] cursor-pointer lg:ml-[4px] lg:mr-[4px]"
                     />
                     <p className="text-center">{feedbackRating}</p>
-                </div>
+                </button>
                 <div className="flex mt-[7px] lg:mt-3">
                     <FaComment size={20} color="#d1d5db" className="mr-2" />
                     <p className="text-sm font-semibold">

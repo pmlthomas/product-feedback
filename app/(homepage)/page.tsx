@@ -1,24 +1,12 @@
 import React from "react";
-import Homepage from "./feedbacksDisplay";
+import ClientComponent from "./clientComponent";
+import ReadFromDbComponent from "./readFromDb";
 
-async function getFeedbacks() {
-    const data = await fetch("http://localhost:3000/api/feedback", {
-        cache: "no-cache",
-    })
-        .then((req) => req.json())
-        .then((res) => res.feedbacks);
-    data.map((el: any) => {
-        el.category = el.category.name;
-        el.totalRating = el.ratings.length;
-    });
-    return data;
-}
-
-export default async function GetFeedbacks() {
-    const feedbacks = await getFeedbacks();
+export default function Page() {
     return (
-        <>
-            <Homepage feedbacks={feedbacks} />
-        </>
+        <ClientComponent>
+            {/* @ts-expect-error Async Server Component */}
+            <ReadFromDbComponent />
+        </ClientComponent>
     );
 }

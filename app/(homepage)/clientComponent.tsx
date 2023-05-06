@@ -1,18 +1,20 @@
 "use client";
-import { useEffect, useState } from "react";
-import useFilter from "../context/filterContext";
-import FeedbackCard from "./components/feedbackCard";
+import React, { useEffect, useState } from "react";
 import FilterBar from "./components/filterBar/filterBar";
 import { Pagination } from "@mantine/core";
+import useFilter from "../context/filterContext";
+import FeedbackCard from "./components/feedbackCard";
 import { useRouter } from "next/navigation";
 
-export default function Homepage({ feedbacks }: any) {
+export default function ClientComponent({ feedbacks }: any) {
     const { filterOption, chosenCategory } = useFilter();
     const [feedbacksDisplay, setFeedbacksDisplay] = useState<any>(null);
     const [activePage, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState<number>(0);
     const perPage = 2;
     const router = useRouter();
+
+    console.log("from serverComponent", feedbacks);
 
     function paginate(content: any[], page_size: number, page_number: number) {
         if (content.length >= 2) {

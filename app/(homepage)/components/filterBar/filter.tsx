@@ -1,6 +1,8 @@
 import useFilter from "@/app/context/filterContext";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { useTransition } from "react";
 
 export default function Filter() {
     const filterOptions = [
@@ -9,16 +11,34 @@ export default function Filter() {
         "Plus récents",
     ];
 
+    // const filterOptions = [
+    //     {
+    //         name: "Plus de votes",
+    //         action: "getMostVoted",
+    //     },
+    //     {
+    //         name: "Plus de commentaires",
+    //         action: "getMostCommented",
+    //     },
+    //     {
+    //         name: "Plus récents",
+    //         action: "getMostRecent",
+    //     },
+    // ];
+
     const { setFilterOption } = useFilter();
     const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
     const [currentFilterOption, setCurrentFilterOption] =
         useState<string>("Plus de votes");
     const filterRef = useRef<HTMLDivElement>(null);
+    const router = useRouter();
+    let [isPending, startTransition] = useTransition();
 
-    function handleClickOnFilterOption(el: string) {
+    function handleClickOnFilterOption(el: any) {
         setCurrentFilterOption(el);
         setIsFilterOpen(false);
         setFilterOption(el);
+        // router.push(route);
     }
 
     // Closing filter When clicking outside of it

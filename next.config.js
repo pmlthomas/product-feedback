@@ -3,6 +3,7 @@ const nextConfig = {
     reactStrictMode: true,
     experimental: {
         appDir: true,
+        serverActions: true,
     },
     env: {
         DB_URI: "mysql://root:root@localhost:3306/product-feedback",
