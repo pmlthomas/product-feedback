@@ -1,6 +1,6 @@
 import React from "react";
 import TopNav from "./components/topNav";
-import FeedbackCard from "@/app/(homepage)/components/feedbackCard";
+import FeedbackCard from "@/app/components/feedbackCard";
 import AddComment from "./components/addComment";
 import Comment from "./components/comment";
 
@@ -19,6 +19,9 @@ async function getFeedback(id: string) {
 
     feedback.category = feedback.category.name;
     feedback.totalRating = feedback.ratings.length;
+    feedback.isVoted = feedback.ratings.some(
+        (rating: any) => rating.authorId === feedback.authorId
+    );
 
     return feedback;
 }
@@ -35,7 +38,7 @@ export default async function Feedback({ params: { id } }: params) {
         );
     });
     return (
-        <div className="mt-12">
+        <div className="mt-12 px-6">
             <TopNav feedbackId={id} />
             <div className="mt-2 mb-36">
                 <FeedbackCard data={feedback} />

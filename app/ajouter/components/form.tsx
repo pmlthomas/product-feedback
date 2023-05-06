@@ -20,6 +20,7 @@ export default function AddFeedbackForm({
         category: "",
         description: "",
     };
+
     const router = useRouter();
     const [currentCategory, setCurrentCategory] = useState<string>("");
     const [formData, setFormData] = useState(initialFormData as formData);

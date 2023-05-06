@@ -6,6 +6,13 @@ export async function updateRating(
     isVoted: boolean,
     userEmail: string
 ) {
+    console.log(
+        "OMGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
+        feedbackId,
+        isVoted,
+        userEmail
+    );
+
     const userReq = await prisma.user.findUnique({
         where: {
             email: userEmail,

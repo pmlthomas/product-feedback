@@ -18,7 +18,7 @@ export default function Comment({ data }: any) {
 
     return (
         <>
-            <div className="flex mt-9">
+            <div className="flex mt-9 px-2">
                 <Image
                     height={45}
                     width={45}

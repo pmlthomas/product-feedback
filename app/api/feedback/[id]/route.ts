@@ -20,7 +20,7 @@ export async function GET(
             },
             ratings: {
                 select: {
-                    id: true,
+                    authorId: true,
                 },
             },
             comments: {

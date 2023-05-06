@@ -3,15 +3,14 @@ import React, { useEffect, useState } from "react";
 import FilterBar from "./components/filterBar/filterBar";
 import { Pagination } from "@mantine/core";
 import useFilter from "../context/filterContext";
-import FeedbackCard from "./components/feedbackCard";
-import { useRouter } from "next/navigation";
+import FeedbackCard from "../components/feedbackCard";
 
 export default function ClientComponent({ feedbacks }: any) {
     const { filterOption, chosenCategory } = useFilter();
     const [feedbacksDisplay, setFeedbacksDisplay] = useState<any>(null);
     const [activePage, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState<number>(0);
-    const perPage = 2;
+    const perPage = 3;
 
     function paginate(content: any[], page_size: number, page_number: number) {
         if (content.length >= 2) {
@@ -94,15 +93,17 @@ export default function ClientComponent({ feedbacks }: any) {
     }, [filterOption, chosenCategory]);
 
     return (
-        <div className="flex flex-col items-center lg:mt-4">
+        <div className="flex flex-col items-center lg:mt-4 h-fit">
             <FilterBar />
             {feedbacksDisplay}
-            <Pagination
-                value={activePage}
-                onChange={setPage}
-                total={totalPages}
-                color="dark"
-            />
+            <div className="mt-2 mb-14">
+                <Pagination
+                    value={activePage}
+                    onChange={setPage}
+                    total={totalPages}
+                    color="dark"
+                />
+            </div>
         </div>
     );
 }

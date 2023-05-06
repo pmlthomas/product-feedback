@@ -84,7 +84,7 @@ export default function ReplyToComment({
                             type="submit"
                             className="ml-2 h-9 p-2 bg-purple rounded-xl text-white text-sm"
                         >
-                            Poster la réponse
+                            Poster
                         </button>
                     </div>
                 </div>
