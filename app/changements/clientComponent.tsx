@@ -3,10 +3,15 @@ import React from "react";
 import MobileDisplay from "./components/mobileDisplay";
 import TabletAndPcDisplay from "./components/tabletAndPcDisplay";
 
+interface clientComponent {
+    plannedFeedbacks: any[];
+    onDoingFeedbacks: any[];
+}
+
 export default function ClientComponent({
     plannedFeedbacks,
     onDoingFeedbacks,
-}: any) {
+}: clientComponent) {
     return (
         <>
             <div className="hidden md:block">

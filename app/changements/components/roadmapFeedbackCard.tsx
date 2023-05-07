@@ -6,8 +6,9 @@ import { IoIosArrowUp } from "react-icons/io";
 import { updateRating } from "../../actions/actions";
 import { useTransition } from "react";
 import { useSession } from "next-auth/react";
+import { feedbackCard } from "@/app/types/feedback";
 
-export default function RoadmapFeedbackCard({ data }: any) {
+export default function RoadmapFeedbackCard({ data }: feedbackCard) {
     const router = useRouter();
     const pathname = usePathname();
     const [isVoted, setIsVoted] = useState<boolean>(false);
@@ -53,7 +54,7 @@ export default function RoadmapFeedbackCard({ data }: any) {
                     {data.description}
                 </p>
                 <p className="p-1 px-4 text-sm rounded-xl w-fit font-semibold cursor-pointer select-none bg-lightGray text-darkBlue h-fit pb-2 mb-3 pt-1.5">
-                    {data.category}
+                    {data.categoryName}
                 </p>
             </div>
             <div className="flex justify-between mr-4 md:ml-4">

@@ -6,8 +6,9 @@ import { IoIosArrowUp } from "react-icons/io";
 import { updateRating } from "../actions/actions";
 import { useTransition } from "react";
 import { useSession } from "next-auth/react";
+import { feedbackCard } from "../types/feedback";
 
-export default function FeedbackCard({ data }: any) {
+export default function FeedbackCard({ data }: feedbackCard) {
     const router = useRouter();
     const pathname = usePathname();
     const [isVoted, setIsVoted] = useState<boolean>(false);
@@ -19,8 +20,6 @@ export default function FeedbackCard({ data }: any) {
         setFeedbackRating(data.totalRating);
         setIsVoted(data.isVoted);
     }, [data]);
-
-    console.log(data);
 
     return (
         <div
@@ -42,7 +41,7 @@ export default function FeedbackCard({ data }: any) {
                     {data.description}
                 </p>
                 <p className="p-1 px-4 text-sm rounded-xl w-fit font-semibold cursor-pointer select-none bg-lightGray text-darkBlue h-fit pb-2 mb-3 pt-1.5">
-                    {data.category}
+                    {data.categoryName}
                 </p>
             </div>
             <div className="flex justify-between mr-4 md:ml-3 lg:ml-4 lg:-mt-10">

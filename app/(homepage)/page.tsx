@@ -1,5 +1,12 @@
 import React from "react";
 import ClientComponent from "./clientComponent";
+import { feedback } from "../types/feedback";
+
+interface comment {
+    _count: {
+        replies: number;
+    };
+}
 
 async function getFeedbacks() {
     const data = await fetch("http://localhost:3000/api/feedback", {
@@ -7,19 +14,18 @@ async function getFeedbacks() {
     })
         .then((req) => req.json())
         .then((res) => res.feedbacks);
-    data.map((el: any) => {
-        el.category = el.category.name;
+    data.map((el: feedback) => {
+        el.categoryName = el.category.name;
         el.totalRating = el._count.ratings;
         el.isVoted = el.ratings.some(
-            (rating: any) => rating.authorId === el.authorId
+            (rating: { authorId: string }) => rating.authorId === el.authorId
         );
         el.commentsLength =
             el._count.comments +
             el.comments
-                .map((comment: any) => comment._count.replies)
-                .reduce((a: any, b: any) => a + b, 0);
+                .map((comment: comment) => comment._count.replies)
+                .reduce((a: number, b: number) => a + b, 0);
     });
-    console.log(data);
     return data;
 }
 

@@ -2,8 +2,9 @@ import React from "react";
 import TopBar from "./components/topBar";
 import RoadmapFeedbackCard from "./components/roadmapFeedbackCard";
 import ClientComponent from "./clientComponent";
+import { feedback } from "../types/feedback";
 
-async function getFeedbacksByRoadmapState(roadmapState: String) {
+async function getFeedbacksByRoadmapState(roadmapState: string) {
     const data = await fetch(
         `http://localhost:3000/api/feedback/roadmap/${roadmapState}`,
         {
@@ -12,19 +13,18 @@ async function getFeedbacksByRoadmapState(roadmapState: String) {
     )
         .then((req) => req.json())
         .then((res) => res.feedbacks);
-    data.map((el: any) => {
-        el.category = el.category.name;
+    data.map((el: feedback) => {
+        el.categoryName = el.category.name;
         el.totalRating = el.ratings.length;
         el.isVoted = el.ratings.some(
-            (rating: any) => rating.authorId === el.authorId
+            (rating: { authorId: string }) => rating.authorId === el.authorId
         );
     });
-    console.log(data);
     return data;
 }
 
-function mapFeedbacks(feedbacks: any) {
-    return feedbacks.map((el: any, i: number) => {
+function mapFeedbacks(feedbacks: feedback[]) {
+    return feedbacks.map((el: feedback, i: number) => {
         return (
             <div
                 key={i}

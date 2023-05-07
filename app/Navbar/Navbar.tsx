@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import AuthBoard from "./components/authBoard";
 import Categories from "./components/categories";
 import Roadmap from "./components/roadmap";

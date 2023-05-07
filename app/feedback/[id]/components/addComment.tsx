@@ -2,7 +2,11 @@
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-export default function AddComment({ feedbackId }: any) {
+interface feedbackId {
+    feedbackId: string;
+}
+
+export default function AddComment({ feedbackId }: feedbackId) {
     const router = useRouter();
     const [commentText, setCommentText] = useState<string>("");
     const [remainingLength, setRemainingLength] = useState<number>(250);

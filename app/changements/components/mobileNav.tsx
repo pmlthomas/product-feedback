@@ -1,13 +1,20 @@
 "use client";
+import { feedback } from "@/app/types/feedback";
 import React from "react";
 
-export default function MobileDisplay({
+interface mobileNav {
+    roadmapStateDisplayed: string;
+    setRoadmapStateDisplayed: any;
+    plannedFeedbacks: any[];
+    onDoingFeedbacks: any[];
+}
+
+export default function MobileNav({
     roadmapStateDisplayed,
     setRoadmapStateDisplayed,
     plannedFeedbacks,
     onDoingFeedbacks,
-}: any) {
-    console.log(roadmapStateDisplayed);
+}: mobileNav) {
     return (
         <div className="w-screen mb-7 flex justify-around bg-white h-16 -mt-6 cursor-pointer">
             <div

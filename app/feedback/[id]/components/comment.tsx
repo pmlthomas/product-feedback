@@ -4,11 +4,13 @@ import React, { useState } from "react";
 import userImage from "../../../../public/images/blank_profile_img.webp";
 import ReplyToComment from "./replyToComment";
 import Reply from "./reply";
+import { commentData } from "@/app/types/comment";
+import { reply } from "@/app/types/reply";
 
-export default function Comment({ data }: any) {
+export default function Comment({ data }: commentData) {
     const [isReplyOpen, setIsReplyOpen] = useState<boolean>(false);
 
-    const repliesMapping = data.replies.map((el: any, i: number) => {
+    const repliesMapping = data.replies.map((el: reply, i: number) => {
         return (
             <div key={i}>
                 <Reply data={el} />

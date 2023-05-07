@@ -37,7 +37,7 @@ export default async function UpdateFeedbackPage({ params: { id } }: params) {
                     </p>
                 </div>
                 <h1 className="text-lightDark font-semibold text-2xl mb-6 mt-6">
-                    Modifier la suggestion
+                    Modifier '{oldFeedback.title}'
                 </h1>
                 <UpdateFeedbackForm oldFeedback={oldFeedback} id={id} />
             </div>

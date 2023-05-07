@@ -1,11 +1,17 @@
 "use client";
 import React, { useState } from "react";
 import MobileNav from "./mobileNav";
+import { feedback } from "@/app/types/feedback";
+
+interface mobileDisplay {
+    plannedFeedbacks: any[];
+    onDoingFeedbacks: any[];
+}
 
 export default function MobileDisplay({
     plannedFeedbacks,
     onDoingFeedbacks,
-}: any) {
+}: mobileDisplay) {
     const [roadmapStateDisplayed, setRoadmapStateDisplayed] =
         useState<string>("planned");
 

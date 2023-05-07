@@ -1,9 +1,15 @@
+import { feedback } from "@/app/types/feedback";
 import React from "react";
+
+interface tabletAndPcDisplay {
+    plannedFeedbacks: any[];
+    onDoingFeedbacks: any[];
+}
 
 export default function TabletAndPcDisplay({
     plannedFeedbacks,
     onDoingFeedbacks,
-}: any) {
+}: tabletAndPcDisplay) {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8">
             <div className="flex flex-col">

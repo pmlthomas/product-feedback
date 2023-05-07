@@ -1,5 +1,5 @@
 "use client";
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, ReactNode } from "react";
 
 interface filterType {
     filterOption: string;
@@ -10,7 +10,7 @@ interface filterType {
 
 const FilterContext = createContext({} as filterType);
 
-export const FilterProvider = ({ children }: any) => {
+export const FilterProvider = ({ children }: { children: ReactNode }) => {
     const [filterOption, setFilterOption] = useState<string>("Plus de votes");
     const [chosenCategory, setChosenCategory] = useState<string>("Tout");
 

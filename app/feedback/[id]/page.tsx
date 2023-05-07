@@ -3,6 +3,7 @@ import TopNav from "./components/topNav";
 import FeedbackCard from "@/app/components/feedbackCard";
 import AddComment from "./components/addComment";
 import Comment from "./components/comment";
+import { comment } from "@/app/types/comment";
 
 interface params {
     params: {
@@ -17,16 +18,16 @@ async function getFeedback(id: string) {
         .then((req) => req.json())
         .then((res) => res.feedback);
 
-    feedback.category = feedback.category.name;
+    feedback.categoryName = feedback.category.name;
     feedback.totalRating = feedback.ratings.length;
     feedback.isVoted = feedback.ratings.some(
-        (rating: any) => rating.authorId === feedback.authorId
+        (rating: { authorId: string }) => rating.authorId === feedback.authorId
     );
     feedback.commentsLength =
         feedback._count.comments +
         feedback.comments
-            .map((comment: any) => comment._count.replies)
-            .reduce((a: any, b: any) => a + b, 0);
+            .map((comment: comment) => comment._count.replies)
+            .reduce((a: number, b: number) => a + b, 0);
 
     return feedback;
 }
@@ -34,14 +35,16 @@ async function getFeedback(id: string) {
 export default async function Feedback({ params: { id } }: params) {
     const feedback = await getFeedback(id);
 
-    const commentsDisplay = feedback.comments.map((comment: any, i: number) => {
-        if (i === feedback.comments.length - 1) comment.isLastOne = true;
-        return (
-            <div key={i}>
-                <Comment data={comment} />
-            </div>
-        );
-    });
+    const commentsDisplay = feedback.comments.map(
+        (comment: comment, i: number) => {
+            if (i === feedback.comments.length - 1) comment.isLastOne = true;
+            return (
+                <div key={i}>
+                    <Comment data={comment} />
+                </div>
+            );
+        }
+    );
     return (
         <div className="mt-12 px-6">
             <TopNav feedbackId={id} />

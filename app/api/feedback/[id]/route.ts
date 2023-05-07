@@ -31,6 +31,7 @@ export async function GET(
             },
             comments: {
                 select: {
+                    id: true,
                     _count: {
                         select: {
                             replies: true,

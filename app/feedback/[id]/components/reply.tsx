@@ -2,8 +2,9 @@
 import React from "react";
 import Image from "next/image";
 import userImage from "../../../../public/images/blank_profile_img.webp";
+import { replyData } from "@/app/types/reply";
 
-export default function Reply({ data }: any) {
+export default function Reply({ data }: replyData) {
     return (
         <div className="flex flex-col mt-3 ml-12">
             <div className="flex">

@@ -3,7 +3,11 @@ import { IoIosArrowBack } from "react-icons/io";
 import EditButton from "./editButton";
 import Link from "next/link";
 
-export default function TopNav({ feedbackId }: any) {
+interface feedbackId {
+    feedbackId: string;
+}
+
+export default function TopNav({ feedbackId }: feedbackId) {
     return (
         <div className="flex justify-between mt-4">
             <div className="flex w-fit cursor-pointer mb-6 select-none">

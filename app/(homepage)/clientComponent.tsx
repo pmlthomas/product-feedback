@@ -4,15 +4,20 @@ import FilterBar from "./components/filterBar/filterBar";
 import { Pagination } from "@mantine/core";
 import useFilter from "../context/filterContext";
 import FeedbackCard from "../components/feedbackCard";
+import { feedback, feedbacksData } from "../types/feedback";
 
-export default function ClientComponent({ feedbacks }: any) {
+export default function ClientComponent({ feedbacks }: feedbacksData) {
     const { filterOption, chosenCategory } = useFilter();
     const [feedbacksDisplay, setFeedbacksDisplay] = useState<any>(null);
     const [activePage, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState<number>(0);
     const perPage = 3;
 
-    function paginate(content: any[], page_size: number, page_number: number) {
+    function paginate(
+        content: feedback[],
+        page_size: number,
+        page_number: number
+    ) {
         if (content.length >= 2) {
             return content.slice(
                 (page_number - 1) * page_size,
@@ -23,8 +28,8 @@ export default function ClientComponent({ feedbacks }: any) {
         }
     }
 
-    function mapFeedbacks(feedbacks: any) {
-        return feedbacks.map((el: any, i: number) => {
+    function mapFeedbacks(feedbacks: feedback[]) {
+        return feedbacks.map((el: feedback, i: number) => {
             return (
                 <div key={i}>
                     <FeedbackCard data={el} />
@@ -33,45 +38,45 @@ export default function ClientComponent({ feedbacks }: any) {
         });
     }
 
-    function filterFeedbacks(feedbacks: any) {
+    function filterFeedbacks(feedbacks: feedback[]) {
         // Category filter
         let filteredFeedbacks = feedbacks;
-        if (chosenCategory !== "Tout") {
+        if (chosenCategory !== "Tout" && feedbacks) {
             filteredFeedbacks = feedbacks
-                .map((el: any) => {
-                    if (el.category === chosenCategory) {
+                .map((el: feedback) => {
+                    if (el.categoryName === chosenCategory) {
                         return el;
                     }
                 })
-                .filter((el: any) => el !== undefined);
+                .filter((el: feedback | undefined) => el !== undefined);
         }
         // FilterBar filter
         switch (filterOption) {
             case "Plus de votes":
                 return (filteredFeedbacks = filteredFeedbacks.sort(function (
-                    a: any,
-                    b: any
+                    a: feedback,
+                    b: feedback
                 ) {
                     return a.totalRating < b.totalRating;
                 }));
             case "Plus de commentaires":
                 return (filteredFeedbacks = filteredFeedbacks.sort(function (
-                    a: any,
-                    b: any
+                    a: feedback,
+                    b: feedback
                 ) {
                     return a.comments.length < b.comments.length;
                 }));
             case "Plus récents":
                 return (filteredFeedbacks = filteredFeedbacks.sort(function (
-                    a: any,
-                    b: any
+                    a: feedback,
+                    b: feedback
                 ) {
                     return a.createdAt < b.createdAt;
                 }));
         }
     }
 
-    function displayFeedbacks(feedbacks: any) {
+    function displayFeedbacks(feedbacks: feedback[]) {
         const filteredFeedbacks = filterFeedbacks(feedbacks);
         // console.log(filteredFeedbacks);
         setTotalPages(Math.ceil(filteredFeedbacks.length / perPage));
