@@ -1,7 +1,7 @@
 import React from "react";
 import TopBar from "./components/topBar";
-import FeedbackCard from "../components/feedbackCard";
 import RoadmapFeedbackCard from "./components/roadmapFeedbackCard";
+import ClientComponent from "./clientComponent";
 
 async function getFeedbacksByRoadmapState(roadmapState: String) {
     const data = await fetch(
@@ -51,26 +51,10 @@ export default async function Changements() {
     return (
         <div className="h-fit flex flex-col items-center w-[95vw] max-w-[1200px] mt-4 pb-12">
             <TopBar />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8">
-                <div className="flex flex-col">
-                    <h2 className="text-lg">
-                        Prévu ({plannedFeedbacks.length})
-                    </h2>
-                    <p className="text-gray-500 text-[1rem] mb-6">
-                        Changement prévu dans le futur
-                    </p>
-                    {plannedFeedbacks}
-                </div>
-                <div className="flex flex-col">
-                    <h2 className="text-lg">
-                        En cours ({onDoingFeedbacks.length})
-                    </h2>
-                    <p className="text-gray-500 text-[1rem] mb-6">
-                        Actuellement en cours de changement
-                    </p>
-                    {onDoingFeedbacks}
-                </div>
-            </div>
+            <ClientComponent
+                plannedFeedbacks={plannedFeedbacks}
+                onDoingFeedbacks={onDoingFeedbacks}
+            />
         </div>
     );
 }

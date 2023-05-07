@@ -83,7 +83,7 @@ export default function RoadmapFeedbackCard({ data }: any) {
                 <div className="flex mt-[7px] lg:mt-3 md:-mr-2">
                     <FaComment size={20} color="#d1d5db" className="mr-2" />
                     <p className="text-sm font-semibold">
-                        {data.comments.length}
+                        {data.commentsLength}
                     </p>
                 </div>
             </div>

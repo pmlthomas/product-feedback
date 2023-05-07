@@ -9,10 +9,10 @@ export default function TopBar() {
     return (
         <div
             className="
-                    w-full h-[90px] min-h-[90px] bg-lightDark flex justify-between items-center px-6 mb-6
+                    w-screen -mt-4 md:w-full h-[90px] min-h-[90px] bg-lightDark flex justify-between items-center px-6 mb-6
                     md:rounded-xl md:mt-8"
         >
-            <div className="flex flex-col">
+            <div className="flex flex-col -mt-2 md:m-0">
                 <div
                     onClick={() => router.back()}
                     className="flex cursor-pointer text-white"
