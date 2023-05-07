@@ -6,7 +6,11 @@ import { IoIosArrowUp } from "react-icons/io";
 import { updateRating } from "../../actions/actions";
 import { useTransition } from "react";
 import { useSession } from "next-auth/react";
-import { feedbackCard } from "@/app/types/feedback";
+import { feedback } from "../../types/feedback";
+
+interface feedbackCard {
+    data: feedback;
+}
 
 export default function RoadmapFeedbackCard({ data }: feedbackCard) {
     const router = useRouter();

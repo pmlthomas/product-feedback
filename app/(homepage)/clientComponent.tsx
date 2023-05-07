@@ -4,7 +4,11 @@ import FilterBar from "./components/filterBar/filterBar";
 import { Pagination } from "@mantine/core";
 import useFilter from "../context/filterContext";
 import FeedbackCard from "../components/feedbackCard";
-import { feedback, feedbacksData } from "../types/feedback";
+import { feedback } from "../types/feedback";
+
+interface feedbacksData {
+    feedbacks: feedback[];
+}
 
 export default function ClientComponent({ feedbacks }: feedbacksData) {
     const { filterOption, chosenCategory } = useFilter();

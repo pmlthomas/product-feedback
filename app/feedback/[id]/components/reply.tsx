@@ -2,7 +2,11 @@
 import React from "react";
 import Image from "next/image";
 import userImage from "../../../../public/images/blank_profile_img.webp";
-import { replyData } from "@/app/types/reply";
+import { reply } from "@/app/types/reply";
+
+interface replyData {
+    data: reply;
+}
 
 export default function Reply({ data }: replyData) {
     return (
