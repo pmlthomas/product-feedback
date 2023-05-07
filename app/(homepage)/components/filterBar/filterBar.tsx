@@ -8,7 +8,7 @@ export default function FilterBar() {
     return (
         <div
             className="
-                w-screen h-16 min-h-[60px] bg-lightDark max-w-[800px] flex justify-between items-center px-6 mb-6
+                w-screen h-16 min-h-[60px] bg-lightDark max-w-[900px] flex justify-between items-center px-6 mb-6
                 md:w-[95vw] md:rounded-xl md:mt-8"
         >
             <div className="flex -mt-1">

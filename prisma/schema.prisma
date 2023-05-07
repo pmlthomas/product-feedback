@@ -66,16 +66,17 @@ model Category {
 }
 
 model Feedback {
-  id          String @id @default(uuid())
-  title       String
-  description String @db.Text
-  comments    Comment[]
-  ratings     Rating[]
-  createdAt   DateTime @default(now())
-  category    Category @relation(fields: [categoryId], references: [id])
-  categoryId  String
-  author      User @relation(fields: [authorId], references: [id])
-  authorId    String
+  id           String @id @default(uuid())
+  title        String
+  description  String @db.Text
+  comments     Comment[]
+  roadmapState String?
+  ratings      Rating[]
+  createdAt    DateTime @default(now())
+  category     Category @relation(fields: [categoryId], references: [id])
+  categoryId   String
+  author       User @relation(fields: [authorId], references: [id])
+  authorId     String
 }
 
 model Rating {

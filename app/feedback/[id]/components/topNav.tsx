@@ -7,7 +7,7 @@ export default function TopNav({ feedbackId }: any) {
     return (
         <div className="flex justify-between mt-4">
             <div className="flex w-fit cursor-pointer mb-6 select-none">
-                <IoIosArrowBack size={15} className="mt-1 mr-2 " />
+                <IoIosArrowBack size={15} className="mt-[7px] mr-2 " />
                 <Link href={"/"}> Revenir en arrière</Link>
             </div>
             <div className="mb-4">
