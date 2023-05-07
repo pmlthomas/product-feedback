@@ -8,7 +8,7 @@ import { feedback, feedbacksData } from "../types/feedback";
 
 export default function ClientComponent({ feedbacks }: feedbacksData) {
     const { filterOption, chosenCategory } = useFilter();
-    const [feedbacksDisplay, setFeedbacksDisplay] = useState<any>(null);
+    const [feedbacksDisplay, setFeedbacksDisplay] = useState<any[]>();
     const [activePage, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState<number>(0);
     const perPage = 3;

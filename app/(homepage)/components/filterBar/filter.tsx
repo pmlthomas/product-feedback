@@ -1,5 +1,4 @@
 import useFilter from "@/app/context/filterContext";
-import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
@@ -15,13 +14,11 @@ export default function Filter() {
     const [currentFilterOption, setCurrentFilterOption] =
         useState<string>("Plus de votes");
     const filterRef = useRef<HTMLDivElement>(null);
-    const router = useRouter();
 
-    function handleClickOnFilterOption(el: any) {
+    function handleClickOnFilterOption(el: string) {
         setCurrentFilterOption(el);
         setIsFilterOpen(false);
         setFilterOption(el);
-        // router.push(route);
     }
 
     // Closing filter When clicking outside of it
