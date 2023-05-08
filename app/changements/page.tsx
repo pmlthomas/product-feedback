@@ -4,6 +4,12 @@ import RoadmapFeedbackCard from "./components/roadmapFeedbackCard";
 import ClientComponent from "./clientComponent";
 import { feedback } from "../types/feedback";
 
+interface comment {
+    _count: {
+        replies: number;
+    };
+}
+
 async function getFeedbacksByRoadmapState(roadmapState: string) {
     const data = await fetch(
         `http://localhost:3000/api/feedback/roadmap/${roadmapState}`,
@@ -19,6 +25,11 @@ async function getFeedbacksByRoadmapState(roadmapState: string) {
         el.isVoted = el.ratings.some(
             (rating: { authorId: string }) => rating.authorId === el.authorId
         );
+        el.commentsLength =
+            el._count.comments +
+            el.comments
+                .map((comment: comment) => comment._count.replies)
+                .reduce((a: number, b: number) => a + b, 0);
     });
     return data;
 }

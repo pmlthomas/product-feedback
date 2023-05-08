@@ -10,7 +10,12 @@ interface replyData {
 
 export default function Reply({ data }: replyData) {
     return (
-        <div className="flex flex-col mt-3 ml-12">
+        <div className="flex flex-col pt-3 ml-[28px] pl-12 relative">
+            <div
+                className={`absolute left-0 border-l-2 ${
+                    !data.isLastOne && "border-gray-200 h-full top-[42px]"
+                }`}
+            ></div>
             <div className="flex">
                 <Image
                     height={45}
@@ -28,7 +33,7 @@ export default function Reply({ data }: replyData) {
                     </p>
                 </div>
             </div>
-            <div className="flex ml-[70px] mb-4">
+            <div className="flex ml-[70px] mb-4 mt-2">
                 <p className="text-purple mr-1.5">@{data.repliedTo.username}</p>
                 <p className="text-gray-500">{data.replyText}</p>
             </div>

@@ -30,7 +30,7 @@ export default function FeedbackCard({ data }: feedbackCard) {
             onClick={() =>
                 pathname === "/" && router.push(`/feedback/${data.id}`)
             }
-            className="w-[95vw] max-w-[900px] mb-4 rounded-xl md:transition-transform md:hover:-translate-y-1 md:hover:shadow-xl md:ease-in-out
+            className="w-[95vw] max-w-[800px] mb-4 rounded-xl md:transition-transform md:hover:-translate-y-1 md:hover:shadow-xl md:ease-in-out
                         cursor-pointer p-4 pr-8 pb-8 shadow-md bg-white"
         >
             <div className="md:ml-4 lg:ml-24 lg:mt-5 max-w-fit">

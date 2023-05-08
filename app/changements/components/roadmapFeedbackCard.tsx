@@ -65,7 +65,6 @@ export default function RoadmapFeedbackCard({ data }: feedbackCard) {
                 <div
                     onClick={(e) => {
                         e.stopPropagation();
-                        console.log(data.id, isVoted, session?.user.email);
                         startTransition(() => {
                             void updateRating(
                                 data.id,

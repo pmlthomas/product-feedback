@@ -17,6 +17,12 @@ export async function GET(
                     name: true,
                 },
             },
+            _count: {
+                select: {
+                    ratings: true,
+                    comments: true,
+                },
+            },
             ratings: {
                 select: {
                     authorId: true,
@@ -25,6 +31,22 @@ export async function GET(
             comments: {
                 select: {
                     id: true,
+                    _count: {
+                        select: {
+                            replies: true,
+                        },
+                    },
+                    author: {
+                        select: {
+                            name: true,
+                            username: true,
+                            email: true,
+                        },
+                    },
+                    commentText: true,
+                },
+                orderBy: {
+                    createdAt: "desc",
                 },
             },
         },
