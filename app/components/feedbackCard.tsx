@@ -38,7 +38,7 @@ export default function FeedbackCard({ data }: feedbackCard) {
                     {data.title}
                 </h1>
                 <p
-                    className={`text-lightDark text-sm mb-4 ${
+                    className={`text-lightDark text-sm mb-4 pr-1 ${
                         pathname === "/" ? "line-clamp-1" : "break-words"
                     }`}
                 >

@@ -2,8 +2,8 @@ import React from "react";
 import TopNav from "./components/topNav";
 import FeedbackCard from "@/app/components/feedbackCard";
 import AddComment from "./components/addComment";
-import Comment from "./components/comment";
 import { comment } from "@/app/types/comment";
+import CommentSection from "./components/commentSection";
 
 interface params {
     params: {
@@ -40,7 +40,7 @@ export default async function Feedback({ params: { id } }: params) {
             if (i === feedback.comments.length - 1) comment.isLastOne = true;
             return (
                 <div key={i}>
-                    <Comment data={comment} />
+                    <CommentSection data={comment} />
                 </div>
             );
         }

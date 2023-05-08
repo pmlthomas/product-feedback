@@ -11,14 +11,14 @@ interface commentData {
     data: comment;
 }
 
-export default function Comment({ data }: commentData) {
+export default function CommentSection({ data }: commentData) {
     const [isReplyOpen, setIsReplyOpen] = useState<boolean>(false);
 
     const repliesMapping = data.replies.map((reply: reply, i: number) => {
         if (i === data.replies.length - 1) reply.isLastOne = true;
         return (
             <div key={i}>
-                <Reply data={reply} />
+                <Reply data={reply} commentId={data.id} />
             </div>
         );
     });
@@ -29,7 +29,8 @@ export default function Comment({ data }: commentData) {
                 <div
                     className={`flex flex-col ${
                         data.replies.length > 0 &&
-                        "absolute border-l-2 border-gray-200 h-full top-[70px] left-7"
+                        !isReplyOpen &&
+                        "absolute border-l-2 border-gray-200 h-[88%] top-[70px] left-7"
                     }`}
                 ></div>
                 <div className="flex mt-9 px-2">
@@ -60,10 +61,9 @@ export default function Comment({ data }: commentData) {
                         data.isLastOne ? "mb-4" : "mb-4"
                     }`}
                 >
-                    {/* {data.replies.length > 0 && (
-                        <div className="absolute border-l-2 border-gray-200 left-[-42px] h-full top-2"></div>
-                    )} */}
-                    <p className="text-gray-500">{data.commentText}</p>
+                    <p className="text-gray-500 break-words pr-3">
+                        {data.commentText}
+                    </p>
                 </div>
             </div>
             <div

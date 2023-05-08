@@ -32,6 +32,14 @@ export async function GET(
             comments: {
                 select: {
                     id: true,
+                    commentText: true,
+                    author: {
+                        select: {
+                            name: true,
+                            username: true,
+                            email: true,
+                        },
+                    },
                     _count: {
                         select: {
                             replies: true,
@@ -39,11 +47,13 @@ export async function GET(
                     },
                     replies: {
                         select: {
+                            id: true,
                             replyText: true,
                             author: {
                                 select: {
                                     name: true,
                                     username: true,
+                                    email: true,
                                 },
                             },
                             repliedTo: {
@@ -56,14 +66,6 @@ export async function GET(
                             createdAt: "desc",
                         },
                     },
-                    author: {
-                        select: {
-                            name: true,
-                            username: true,
-                            email: true,
-                        },
-                    },
-                    commentText: true,
                 },
                 orderBy: {
                     createdAt: "desc",

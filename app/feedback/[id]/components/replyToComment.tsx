@@ -55,13 +55,13 @@ export default function ReplyToComment({
     }
 
     return (
-        <>
+        <div className="mb-2">
             <form onSubmit={handleSubmit}>
                 <textarea
                     onChange={(e) => handleChange(e)}
                     id="description"
                     value={`${usernameToReplyStr}${replyText}`}
-                    className="h-24 bg-gray-100 w-full p-5 pl-6 mt-4 rounded-lg resize-none focus:outline-none"
+                    className="h-24 bg-gray-100 w-full p-5 pl-6 rounded-lg resize-none focus:outline-none"
                 ></textarea>
                 {error && (
                     <div className="flex justify-center mt-1 -mb-2">
@@ -89,6 +89,6 @@ export default function ReplyToComment({
                     </div>
                 </div>
             </form>
-        </>
+        </div>
     );
 }
