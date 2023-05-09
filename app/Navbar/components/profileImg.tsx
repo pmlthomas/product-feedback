@@ -27,6 +27,7 @@ export default function ProfileImg({ userEmail }: any) {
         startTransition(
             () => void saveProfileImg(userEmail, img.info.secure_url)
         );
+        setProfileImg(img.info.secure_url);
     }
 
     return (
