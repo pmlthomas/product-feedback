@@ -38,6 +38,7 @@ export async function GET(
                             name: true,
                             username: true,
                             email: true,
+                            profileImg: true,
                         },
                     },
                     _count: {
@@ -54,6 +55,7 @@ export async function GET(
                                     name: true,
                                     username: true,
                                     email: true,
+                                    profileImg: true,
                                 },
                             },
                             repliedTo: {

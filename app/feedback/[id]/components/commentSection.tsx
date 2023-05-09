@@ -18,7 +18,11 @@ export default function CommentSection({ data }: commentData) {
         if (i === data.replies.length - 1) reply.isLastOne = true;
         return (
             <div key={i}>
-                <Reply data={reply} commentId={data.id} />
+                <Reply
+                    data={reply}
+                    commentId={data.id}
+                    profileImg={data.author.profileImg}
+                />
             </div>
         );
     });
@@ -37,9 +41,9 @@ export default function CommentSection({ data }: commentData) {
                     <Image
                         height={45}
                         width={45}
-                        src={userImage}
+                        src={data.author.profileImg ?? userImage}
                         alt="userImage"
-                        className="rounded-full max-h-[45px] mt-[5px]"
+                        className="object-cover rounded-full max-h-[45px] max-w-[45px] min-h-[45px] min-w-[45px] mt-[5px]"
                     />
                     <div className="flex flex-col ml-6 w-full">
                         <p className="text-lightDark font-semibold">

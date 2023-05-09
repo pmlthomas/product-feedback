@@ -9,6 +9,7 @@ export interface comment {
         name: string;
         username: string;
         email: string;
+        profileImg: string;
     };
     replies: [
         {
@@ -16,6 +17,7 @@ export interface comment {
             author: {
                 name: string;
                 username: string;
+                profileImg: string;
             };
             repliedTo: {
                 username: string;

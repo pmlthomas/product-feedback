@@ -55,7 +55,7 @@ export default function ProfileImg({ userEmail }: any) {
                                 accept="image/*"
                             />
                             <Image
-                                src={profileImg ? profileImg : blankImg}
+                                src={profileImg ?? blankImg}
                                 height={50}
                                 width={50}
                                 alt="user_img"
