@@ -1,4 +1,5 @@
 "use server";
+import { NextResponse } from "next/server";
 import prisma from "../../prisma/prismaClient";
 
 export async function updateRating(
@@ -6,13 +7,6 @@ export async function updateRating(
     isVoted: boolean,
     userEmail: string
 ) {
-    console.log(
-        "OMGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
-        feedbackId,
-        isVoted,
-        userEmail
-    );
-
     const userReq = await prisma.user.findUnique({
         where: {
             email: userEmail,
@@ -39,4 +33,29 @@ export async function updateRating(
         }
         prisma.$disconnect;
     }
+}
+
+export async function saveProfileImg(userEmail: string, imgUrl: string) {
+    await prisma.user.update({
+        where: {
+            email: userEmail,
+        },
+        data: {
+            profileImg: imgUrl,
+        },
+    });
+    prisma.$disconnect;
+}
+
+export async function getProfileImg(userEmail: string) {
+    const profileImg = await prisma.user.findFirstOrThrow({
+        where: {
+            email: userEmail,
+        },
+        select: {
+            profileImg: true,
+        },
+    });
+    prisma.$disconnect;
+    return NextResponse.json({ profileImg: profileImg });
 }

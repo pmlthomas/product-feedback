@@ -5,6 +5,9 @@ const nextConfig = {
         appDir: true,
         serverActions: true,
     },
+    images: {
+        domains: ["res.cloudinary.com"],
+    },
     env: {
         DB_URI: "mysql://root:root@localhost:3306/product-feedback",
         GOOGLE_CLIENT_ID:

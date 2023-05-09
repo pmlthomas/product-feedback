@@ -48,6 +48,7 @@ model User {
   name           String
   username       String
   password       String
+  profileImg     String?
   feedbacks      Feedback[]
   comments       Comment[]
   emailVerified  DateTime?
