@@ -46,16 +46,3 @@ export async function saveProfileImg(userEmail: string, imgUrl: string) {
     });
     prisma.$disconnect;
 }
-
-export async function getProfileImg(userEmail: string) {
-    const profileImg = await prisma.user.findFirstOrThrow({
-        where: {
-            email: userEmail,
-        },
-        select: {
-            profileImg: true,
-        },
-    });
-    prisma.$disconnect;
-    return NextResponse.json({ profileImg: profileImg });
-}
