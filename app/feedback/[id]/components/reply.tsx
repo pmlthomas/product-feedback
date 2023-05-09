@@ -32,7 +32,7 @@ export default function Reply({ data, commentId }: replyData) {
                 />
                 <div className="flex justify-between w-full">
                     <div className="flex flex-col ml-6 w-full">
-                        <p className="text-lightDark font-semibold">
+                        <p className="text-lightDark font-semibold text-[1em]">
                             {data.author.name}
                         </p>
                         <p className="text-gray-500 text-sm">
@@ -48,8 +48,10 @@ export default function Reply({ data, commentId }: replyData) {
                 </div>
             </div>
             <div className="flex ml-[70px] mb-4 mt-2">
-                <p className="text-purple mr-1.5">@{data.repliedTo.username}</p>
-                <p className="text-gray-500 break-words pr-3">
+                <p className="text-gray-500 break-words text-[0.9em] pr-3">
+                    <span className="text-purple mr-1.5">
+                        @{data.repliedTo.username}
+                    </span>
                     {data.replyText}
                 </p>
             </div>

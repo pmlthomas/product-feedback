@@ -34,11 +34,11 @@ export default function FeedbackCard({ data }: feedbackCard) {
                         cursor-pointer p-4 pr-8 pb-8 shadow-md bg-white"
         >
             <div className="md:ml-4 lg:ml-24 lg:mt-5 max-w-fit">
-                <h1 className="text-lightDark font-semibold text-lg mb-1">
+                <h1 className="text-lightDark font-semibold text-[1em] mb-1">
                     {data.title}
                 </h1>
                 <p
-                    className={`text-lightDark text-sm mb-4 pr-1 ${
+                    className={`text-gray-500 text-[0.9em] mb-4 pr-1 ${
                         pathname === "/" ? "line-clamp-1" : "break-words"
                     }`}
                 >

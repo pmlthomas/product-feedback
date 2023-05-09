@@ -31,7 +31,7 @@ export default function RoadmapFeedbackCard({ data }: feedbackCard) {
                 pathname === "/changements" &&
                 router.push(`/feedback/${data.id}`)
             }
-            className="cursor-pointer p-4 pr-8 pb-9 shadow-md bg-white rounded-b-xl"
+            className="cursor-pointer p-4 pr-8 pb-9 pt-3 shadow-md bg-white rounded-b-xl"
         >
             <div className="md:ml-4 max-w-fit">
                 <div className="flex">
@@ -54,7 +54,7 @@ export default function RoadmapFeedbackCard({ data }: feedbackCard) {
                 <h1 className="text-lightDark font-semibold text-lg mb-1">
                     {data.title}
                 </h1>
-                <p className="text-lightDark text-sm mb-4 line-clamp-1">
+                <p className="text-gray-500 text-[0.9em] mb-4 line-clamp-1">
                     {data.description}
                 </p>
                 <p className="p-1 px-4 text-sm rounded-xl w-fit font-semibold cursor-pointer select-none bg-lightGray text-darkBlue h-fit pb-2 mb-3 pt-1.5">

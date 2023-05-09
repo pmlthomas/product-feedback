@@ -42,7 +42,7 @@ export default function CommentSection({ data }: commentData) {
                         className="object-cover rounded-full max-h-[45px] max-w-[45px] min-h-[45px] min-w-[45px] mt-[5px]"
                     />
                     <div className="flex flex-col ml-6 w-full">
-                        <p className="text-lightDark font-semibold">
+                        <p className="text-lightDark font-semibold text-[1em]">
                             {data.author.name}
                         </p>
                         <p className="text-gray-500 text-sm">
@@ -61,7 +61,7 @@ export default function CommentSection({ data }: commentData) {
                         data.isLastOne ? "mb-4" : "mb-4"
                     }`}
                 >
-                    <p className="text-gray-500 break-words pr-3">
+                    <p className="text-gray-500 break-words text-[0.9em] pr-3">
                         {data.commentText}
                     </p>
                 </div>
