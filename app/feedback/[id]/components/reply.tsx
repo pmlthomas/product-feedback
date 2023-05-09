@@ -8,10 +8,9 @@ import ReplyToComment from "./replyToComment";
 interface replyData {
     data: reply;
     commentId: string;
-    profileImg: string;
 }
 
-export default function Reply({ data, commentId, profileImg }: replyData) {
+export default function Reply({ data, commentId }: replyData) {
     const [isReplyOpen, setIsReplyOpen] = useState<boolean>(false);
 
     return (
@@ -27,7 +26,7 @@ export default function Reply({ data, commentId, profileImg }: replyData) {
                 <Image
                     height={45}
                     width={45}
-                    src={profileImg ?? userImage}
+                    src={data.author.profileImg ?? userImage}
                     alt="userImage"
                     className="object-cover rounded-full max-h-[45px] max-w-[45px] min-h-[45px] min-w-[45px] mt-[5px]"
                 />

@@ -5,22 +5,9 @@ export interface reply {
     author: {
         name: string;
         username: string;
+        profileImg: string;
     };
     repliedTo: {
         username: string;
     };
-    replyReplies: [
-        {
-            id: string;
-            replyText: string;
-            isLastOne: boolean;
-            author: {
-                name: string;
-                username: string;
-            };
-            repliedTo: {
-                username: string;
-            };
-        }
-    ];
 }

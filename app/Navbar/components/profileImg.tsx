@@ -5,9 +5,11 @@ import blankImg from "../../../public/images/blank_profile_img.webp";
 import { BsPlusCircleDotted } from "react-icons/bs";
 import { CldUploadWidget } from "next-cloudinary";
 import { saveProfileImg } from "@/app/actions/actions";
+import { useRouter } from "next/navigation";
 
 export default function ProfileImg({ userEmail }: any) {
     const [profileImg, setProfileImg] = useState<string>("");
+    const router = useRouter();
 
     useEffect(() => {
         async function fetchProfileImg() {
@@ -19,7 +21,6 @@ export default function ProfileImg({ userEmail }: any) {
                     .then((res) => res.profileImg.profileImg)
             );
         }
-
         fetchProfileImg();
     }, []);
 

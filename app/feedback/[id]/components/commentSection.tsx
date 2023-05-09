@@ -18,11 +18,7 @@ export default function CommentSection({ data }: commentData) {
         if (i === data.replies.length - 1) reply.isLastOne = true;
         return (
             <div key={i}>
-                <Reply
-                    data={reply}
-                    commentId={data.id}
-                    profileImg={data.author.profileImg}
-                />
+                <Reply data={reply} commentId={data.id} />
             </div>
         );
     });
