@@ -15,7 +15,7 @@ export default function ClientComponent({ feedbacks }: feedbacksData) {
     const [feedbacksDisplay, setFeedbacksDisplay] = useState<any[]>();
     const [activePage, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState<number>(0);
-    const perPage = 3;
+    const perPage = 4;
 
     function paginate(
         content: feedback[],
@@ -75,7 +75,7 @@ export default function ClientComponent({ feedbacks }: feedbacksData) {
                     a: feedback,
                     b: feedback
                 ) {
-                    return a.createdAt < b.createdAt;
+                    return a.createdAt > b.createdAt;
                 }));
         }
     }
